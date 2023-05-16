@@ -1,6 +1,9 @@
 # Formulary Manager
 ## Full-Stack MERN application
 
+Tools Used:
+* Mongoose, Axios, Cors
+
 This project intends to accomplish the following:
 * Track medications by percent on hand
 * Track expiration dates of medications giving the user a warning if meds will expire w/i 30/60/90 days (maybe set status for expiration)
