@@ -9,3 +9,5 @@ This project intends to accomplish the following:
 * Full-access users will be able to conduct inventories and update supplies on hand
 * Users will be able to view medications by name or location (self, room, safe etc..)
 * View only users will be limited to view the formulary and status of medications
+
+## PHASE I
