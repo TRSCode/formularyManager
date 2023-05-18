@@ -16,12 +16,12 @@ const FormularySchema = new mongoose.Schema({
     },
     unitType: { 
         type: String,
-        required: [true, "Unit Type is required"],
+        required: [false, "Unit Type is required"],
         enum: ['EA', 'PG', 'VI', 'TU', 'BT', 'BX', 'KT', 'CO', 'other']
     },
     authorizedAmount: { 
         type: Number,
-        required: [true, "Quantity Authorized is required"],
+        required: [false, "Quantity Authorized is required"],
         minlength: [1, "Quantity Authorized must contain a number"],
         maxlength: [10, "Quantity Authorized cannot exceed 10 numbers"]
     },
@@ -39,7 +39,7 @@ const FormularySchema = new mongoose.Schema({
     },
     expiration: { 
         type: Date,
-        required: [true, "Expiration Date is required"],
+        required: [false, "Expiration Date is required"],
         minlength: [4, "Expiration Date must contain at least 4 numbers"],
         maxlength: [ 10, "Expiration Date cannot exceed 10 characters"]
     },
@@ -63,21 +63,21 @@ const FormularySchema = new mongoose.Schema({
     },
     ciic: { 
         type: String,
-        required: [true, "CIIC must select one"],
+        required: [false, "CIIC must select one"],
         enum: ['Q', 'R', 'U', 'J']
     },
     dispenseLevel: { type: String,
-                    required: [true,"Dispense Level is required"],
+                    required: [false,"Dispense Level is required"],
                     enum: ['Presciber', 'Delegate']
     },
     storageLocation: { 
         type: String,
-        required: [true, "Storage Location is required"],
+        required: [false, "Storage Location is required"],
         enum: ['Shelf 1', 'Shelf 2', 'Shelf 3', 'Airway Kit', 'Safe']
     },
     activeStatus: {
         type: Boolean,
-        required: [true, "Active Status is required"],
+        required: [false, "Active Status is required"],
         enum: [true, false],
         default: true
     },
