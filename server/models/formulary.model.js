@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const FormularySchema = new mongoose.Schema({
     medication: { type: String },
     description: { type: String },
@@ -23,6 +24,12 @@ const FormularySchema = new mongoose.Schema({
         type: String,
         enum: ['Shelf 1', 'Shelf 2', 'Shelf 3', 'Airway Kit', 'Safe']
     },
+    activeStatus: {
+        type: Boolean,
+        enum: [true, false],
+        default: true
+    },
     notes: {type: String}
 }, { timestamps: true });
+
 module.exports = mongoose.model('Formulary', FormularySchema);
