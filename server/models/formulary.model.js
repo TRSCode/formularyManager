@@ -39,9 +39,15 @@ const FormularySchema = new mongoose.Schema({
     },
     expiration: { 
         type: Date,
-        required: [false, "Expiration Date is required"],
-        minlength: [4, "Expiration Date must contain at least 4 numbers"],
-        maxlength: [ 10, "Expiration Date cannot exceed 10 characters"]
+        required: [true, "Expiration Date is required"],
+        validate: {
+            validator: function (value) {
+                const currentDate = new Date();
+                const enteredDate = new Date(value);
+                return enteredDate > currentDate;
+            },
+            message: "Expiration Date must be in the future"
+        }
     },
     nsn: { 
         type: String,
