@@ -7,12 +7,13 @@ const MedForm = (props) => {
     const [description, setDescription] = useState("");
     const [onHand, setOnHand] = useState("");
     const [lotNumber, setLotNumber]= useState("");
-    // const [expiration, setExpiration] = useState("");
+    const [expiration, setExpiration] = useState("");
     const [errors,setErrors] = useState({});
 
     // const formatDateForBackend = (dateString) => {
-    //     const [month, day, year] = dateString.split('/');
-    //     return parseInt(`${year}${month}${day}`,10);
+    //     const [month, day, year] = dateString.split('-');
+    //     return new Date(year, month -1, day);
+    //     // return parseInt(`${year}${month}${day}`,10);
     // };
 
     const onSubmitHandler = (e) => {
@@ -21,8 +22,8 @@ const MedForm = (props) => {
             medication,
             description,
             onHand,
-            lotNumber
-            // expiration
+            lotNumber,
+            expiration
             // expiration: formatDateForBackend(expiration)
         })
             .then(res=>{
@@ -33,7 +34,7 @@ const MedForm = (props) => {
                 setDescription("");
                 setOnHand("");
                 setLotNumber("");
-                // setExpiration("");
+                setExpiration("");
             })
         .catch(err =>{
             console.log(err);
@@ -68,12 +69,12 @@ const MedForm = (props) => {
                 <p className="bg-danger text-warning">{errors.lotNumber.message}</p>:""}
                 <input type="text" className="form-control" value={lotNumber} onChange = {(e)=>setLotNumber(e.target.value)}/>
             </p>
-            {/* <p>
+            <p>
                 <label className="form-label">Expiration:</label>
                 {errors.expiration ? 
                 <p className="bg-danger text-warning">{errors.expiration.message}</p>:""}
-                <input type="date" className="form-control" value={expiration} onChange = {(e)=>setExpiration(e.target.value)}/>
-            </p> */}
+                <input type="date" className="form-control" value={expiration} onChange = {(e)=>{console.log(e.target.value); setExpiration(e.target.value)}}/>
+            </p>
             <input type="submit" className="btn btn-success mx-3"/>
         </form>
     )

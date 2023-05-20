@@ -17,28 +17,31 @@ const ViewAllMeds = () => {
 
     return (
         <div className="container">
-        <h3 className="text-center p-3">Medication Formulary</h3>
-        {
-            formulary.map((med, index) => {
-            return ( 
-                <div key={index} className='d-inline-flex mx-2 p-3'>
-                    <div className="container bg-warning rounded-top p-2"> 
-                        <p>Name: {med.medication}</p>
-                        <p>Description: {med.description}</p>
-                        <p>Quantity: {med.onHand}</p>
-                        <p>Lot Number: {med.lotNumber}</p>
-                        <p>Expiration: {med.expiration}</p>
-
-                        {/* <Link to={`/product/${product._id}`}> View |</Link>
-                        <Link to={'/product/edit/' + product._id}> Edit</Link>
-                        <button onClick={(e)=>{deleteProduct(product._id)}} className="btn btn-danger ms-2">
-                            Delete
-                        </button> */}
-                    </div>
-                </div>
-                
-            )})
-        }
+            <h3 className="text-center p-3">Medication Formulary Overview</h3>
+            <table className='table border-dark'>
+                    <thead>
+                        <tr>
+                            <th scope='col'>Name</th>
+                            <th scope='col'>Details</th>
+                            <th scope='col'>Quantity</th>
+                            <th scope='col'>Lot Number</th>
+                            <th scope='col'>Expiration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {formulary.map((med, index) => {
+                            return ( 
+                                <tr key={index}>
+                                    <td>{med.medication}</td>
+                                    <td>{med.description}</td>
+                                    <td>{med.onHand}</td>
+                                    <td>{med.lotNumber}</td>
+                                    <td>{med.expiration}</td>
+                                </tr>
+                            )})
+                        }
+                    </tbody>
+                </table>
     </div>
     );
 }

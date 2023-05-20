@@ -39,16 +39,30 @@ const FormularySchema = new mongoose.Schema({
     },
     expiration: { 
         type: Date,
-        required: [true, "Expiration Date is required"],
-        validate: {
-            validator: function (value) {
-                const currentDate = new Date();
-                const enteredDate = new Date(value);
-                return enteredDate > currentDate;
-            },
-            message: "Expiration Date must be in the future"
-        }
+        required: [true, "Expiration Date is required"]
+        // validate: {
+        //     validator: function (value) {
+        //         const currentDate = new Date();
+        //         const enteredDate = new Date(value);
+        //         return enteredDate > currentDate;
+        //     },
+        //     message: "Expiration Date must be in the future"
+        // }
     },
+    // expiration: {
+    //     type: String,
+    //     required: [false, "Expiration Date is required"],
+    //     validate: {
+    //         validator: function (value) {
+    //             const currentDate = new Date();
+    //             const enteredYear = parseInt(value.substring(0, 4));
+    //             const enteredMonth = parseInt(value.substring(5, 7));
+    //             const enteredDate = new Date(enteredYear, enteredMonth - 1); // Subtract 1 from month since it is zero-indexed in JavaScript
+    //             return enteredDate > currentDate;
+    //         },
+    //         message: "Expiration Date must be in the future"
+    //     }
+    // },
     nsn: { 
         type: String,
         required: [false],
