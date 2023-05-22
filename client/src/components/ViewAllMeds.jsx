@@ -36,7 +36,7 @@ const ViewAllMeds = () => {
                                     <td>{med.description}</td>
                                     <td>{med.onHand}</td>
                                     <td>{med.lotNumber}</td>
-                                    <td>{med.expiration}</td>
+                                    {/* <td>{med.expiration}</td> */}
                                 </tr>
                             )})
                         }
