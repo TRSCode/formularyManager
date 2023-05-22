@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+// import axios from 'axios';
+import {Routes, Route, Navigate} from 'react-router-dom';
 import MedForm from './components/MedForm';
 import ViewAllMeds from './components/ViewAllMeds'
+import Navbar from "./Navbar"
+import Dashboard from './components/Dashboard';
+import "./styles.css"
 const App = () => {
+
   return (
     <div>
-    <BrowserRouter>
+      <Navbar />
       <Routes>
-        <Route element = {<ViewAllMeds/>} path="/" />
+        <Route element={<Navigate to="/dashboard" />} path="/" />
+        <Route element = {<Dashboard/>} path = "/dashboard" />
+        <Route element = {<ViewAllMeds/>} path="/formulary" />
         <Route element = {<MedForm/>} path="/add" />
       </Routes>
-    </BrowserRouter>
     </div>
   );
 }

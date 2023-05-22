@@ -1,3 +1,4 @@
+// Style improvements courtesy Alex Ponce 
 import React, { useState } from 'react'
 import axios from 'axios';
 
@@ -43,7 +44,7 @@ const MedForm = (props) => {
     }
     
     return (
-        <form onSubmit={onSubmitHandler} className="container p-3 mb-2 bg-primary text-white col-6">
+        <form onSubmit={onSubmitHandler} className="container p-3 mb-2 bg-dark text-white col-6">
             <h2>Add A Medication</h2>
             <p>
                 <label className="form-label">Name: </label>
@@ -75,7 +76,7 @@ const MedForm = (props) => {
                 <p className="bg-danger text-warning">{errors.expiration.message}</p>:""}
                 <input type="date" className="form-control" value={expiration} onChange = {(e)=>{console.log(e.target.value); setExpiration(e.target.value)}}/>
             </p> */}
-            <input type="submit" className="btn btn-success mx-3"/>
+            <input type="submit" className="btn btn-secondary mx-3"/>
         </form>
     )
 }
