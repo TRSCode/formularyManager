@@ -11,6 +11,7 @@ export default function Dashboard() {
             </ul>
             <h3>Phase II</h3>
             <ul>
+                <li>Sort by name, type, expiration etc</li>
                 <li>List Meds by location</li>
                 <li>Conduct Inventory Feature</li>
                 <li>Create Actions Menu</li>

@@ -38,7 +38,8 @@ const FormularySchema = new mongoose.Schema({
         maxlength: [40, "Lot Number cannot exceed 40 characters"]
     },
     expiration: { 
-        type: Date,
+        // type: Date,
+        type: String,
         required: [true, "Expiration Date is required"]
         // validate: {
         //     validator: function (value) {

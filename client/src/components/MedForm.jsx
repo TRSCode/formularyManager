@@ -3,13 +3,14 @@ import React, { useState } from 'react'
 import axios from 'axios';
 
 const MedForm = (props) => {
-    const {formulary, setFormulary} = props;
+    // const {formulary, setFormulary} = props;
     const [medication, setMedication] = useState("");
     const [description, setDescription] = useState("");
     const [onHand, setOnHand] = useState("");
     const [lotNumber, setLotNumber]= useState("");
-    // const [expiration, setExpiration] = useState("");
+    const [expiration, setExpiration] = useState("");
     const [errors,setErrors] = useState({});
+    const [successMessage, setSuccessMessage] = useState('');
 
     // const formatDateForBackend = (dateString) => {
     //     const [month, day, year] = dateString.split('-');
@@ -23,19 +24,20 @@ const MedForm = (props) => {
             medication,
             description,
             onHand,
-            lotNumber
-            // expiration
+            lotNumber,
+            expiration
             // expiration: formatDateForBackend(expiration)
         })
             .then(res=>{
-                console.log(res);
-                console.log(res.data);
-                setFormulary([...formulary, res.data]);
+                // console.log(res);
+                // console.log(res.data);
+                // setFormulary([...formulary, res.data]);
                 setMedication("");
                 setDescription("");
                 setOnHand("");
                 setLotNumber("");
-                // setExpiration("");
+                setExpiration("");
+                setSuccessMessage('Success!   Add another!');
             })
         .catch(err =>{
             console.log(err);
@@ -46,6 +48,7 @@ const MedForm = (props) => {
     return (
         <form onSubmit={onSubmitHandler} className="container p-3 mb-2 bg-dark text-white col-6">
             <h2>Add A Medication</h2>
+            {successMessage && <h3 className="text-success">{successMessage}</h3>}
             <p>
                 <label className="form-label">Name: </label>
                 {errors.medication ? 
@@ -56,7 +59,7 @@ const MedForm = (props) => {
                 <label className="form-label">Description: </label>
                 {errors.description ? 
                 <p className="bg-danger text-warning">{errors.description.message}</p>:""}
-                <input type="text" className="form-control" value={description} placeholder="include dosage form and strength" onChange = {(e)=>setDescription(e.target.value)}/>
+                <input type="text" className="form-control" value={description} placeholder="Include: Strength, Route, quantity per container" onChange = {(e)=>setDescription(e.target.value)}/>
             </p>
             <p>
                 <label className="form-label">Quantity:  </label>
@@ -70,12 +73,12 @@ const MedForm = (props) => {
                 <p className="bg-danger text-warning">{errors.lotNumber.message}</p>:""}
                 <input type="text" className="form-control" value={lotNumber} onChange = {(e)=>setLotNumber(e.target.value)}/>
             </p>
-            {/* <p>
+            <p>
                 <label className="form-label">Expiration:</label>
                 {errors.expiration ? 
                 <p className="bg-danger text-warning">{errors.expiration.message}</p>:""}
                 <input type="date" className="form-control" value={expiration} onChange = {(e)=>{console.log(e.target.value); setExpiration(e.target.value)}}/>
-            </p> */}
+            </p>
             <input type="submit" className="btn btn-secondary mx-3"/>
         </form>
     )
