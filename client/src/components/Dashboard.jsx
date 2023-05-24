@@ -7,11 +7,12 @@ export default function Dashboard() {
             <h3>Phase I</h3>
             <ul>
                 <li>Basic CRUD</li>
-                <li>Basic UI</li>
+                <li>✅ Basic UI</li>
             </ul>
             <h3>Phase II</h3>
             <ul>
-                <li>Sort by name, type, expiration etc</li>
+                <li>✅ Sort by name, type, expiration etc</li>
+                <li>Alert if expired</li>
                 <li>List Meds by location</li>
                 <li>Conduct Inventory Feature</li>
                 <li>Create Actions Menu</li>

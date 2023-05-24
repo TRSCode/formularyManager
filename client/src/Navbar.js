@@ -3,7 +3,7 @@ import logoMM from './logoMM.png'
 export default function Navbar() {
     
     return <nav className="nav">
-        <a href="/dashboard" className="site-title"><img src={logoMM} className="logoSize" alt="Med Manager" />Med Manager</a>
+        <a href="/dashboard" className="site-title"><img src={logoMM} className="logoSize me-2" alt="Med Manager" />Med Manager</a>
         <ul>
             <CustomLink href="/formulary">Formulary</CustomLink>
             <CustomLink href="/add">Add Med</CustomLink>

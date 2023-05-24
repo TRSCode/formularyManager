@@ -38,10 +38,10 @@ const ViewAllMeds = () => {
         <div className="container">
             <h3 className="text-center p-3">Medication Formulary Overview</h3>
             <div className="d-flex">
-                <span className="me-2">Expires In: </span>
-                <span className="bg-danger me-2"> 30 days </span>
-                <span className="bg-warning me-2"> 60 days </span>
-                <span className="bg-info"> 90 days </span>
+                <span className="me-2 pt-2 fw-bold">Expires In: </span>
+                <span className="legend30 me-2 p-2"> 30 days </span>
+                <span className="legend60 me-2 p-2"> 60 days </span>
+                <span className="legend90 p-2"> 90 days </span>
 
             </div>
             <table className='table border-dark'>
