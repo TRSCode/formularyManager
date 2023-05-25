@@ -89,11 +89,11 @@ const FormularySchema = new mongoose.Schema({
     },
     dispenseLevel: { type: String,
                     required: [false,"Dispense Level is required"],
-                    enum: ['Presciber', 'Delegate']
+                    enum: ['Prescriber', 'Delegate']
     },
     storageLocation: { 
         type: String,
-        required: [false, "Storage Location is required"],
+        required: [true, "Storage Location is required"],
         enum: ['Shelf 1', 'Shelf 2', 'Shelf 3', 'Airway Kit', 'Safe']
     },
     activeStatus: {

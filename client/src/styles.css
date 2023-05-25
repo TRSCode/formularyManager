@@ -68,3 +68,8 @@ body {
 .legend90 {
     background-color: #cff4fc;
 }
+
+.legendExp {
+    background-color: black;
+    color: white;
+}

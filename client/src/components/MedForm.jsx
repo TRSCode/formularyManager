@@ -1,4 +1,3 @@
-// Style improvements courtesy Alex Ponce 
 import React, { useState } from 'react'
 import axios from 'axios';
 
@@ -8,6 +7,7 @@ const MedForm = (props) => {
     const [description, setDescription] = useState("");
     const [onHand, setOnHand] = useState("");
     const [lotNumber, setLotNumber]= useState("");
+    const [storageLocation, setStorageLocation] = useState("");
     const [expiration, setExpiration] = useState("");
     const [errors,setErrors] = useState({});
     const [successMessage, setSuccessMessage] = useState('');
@@ -25,6 +25,7 @@ const MedForm = (props) => {
             description,
             onHand,
             lotNumber,
+            storageLocation,
             expiration
             // expiration: formatDateForBackend(expiration)
         })
@@ -36,6 +37,7 @@ const MedForm = (props) => {
                 setDescription("");
                 setOnHand("");
                 setLotNumber("");
+                setStorageLocation("");
                 setExpiration("");
                 setSuccessMessage('Success!   Add another!');
             })
@@ -61,24 +63,49 @@ const MedForm = (props) => {
                 <p className="bg-danger text-warning">{errors.description.message}</p>:""}
                 <input type="text" className="form-control" value={description} placeholder="Include: Strength, Route, quantity per container" onChange = {(e)=>setDescription(e.target.value)}/>
             </p>
+            {/* -----------------------------test------------------------------ */}
+            <div className="row gap-x-20">
+                <div className="col-md">
+                    <p>
+                        <label className="form-label">Quantity:  </label>
+                        {errors.onHand ? 
+                        <p className="bg-danger text-warning">{errors.onHand.message}</p>:""}
+                        <input type="text" className="form-control" value={onHand} placeholder="provide quantity on hand" onChange = {(e)=>setOnHand(e.target.value)}/>
+                    </p>
+                </div>
+                <div className="col-md">
+                    <p>
+                        <label className="form-label">Lot Number:</label>
+                        {errors.lotNumber ? 
+                        <p className="bg-danger text-warning">{errors.lotNumber.message}</p>:""}
+                        <input type="text" className="form-control" value={lotNumber} onChange = {(e)=>setLotNumber(e.target.value)}/>
+                    </p>
+                </div>
+                <div className="col-md">
+                    <p>
+                        <label className="form-label">Expiration:</label>
+                        {errors.expiration ? 
+                        <p className="bg-danger text-warning">{errors.expiration.message}</p>:""}
+                        <input type="date" className="form-control" value={expiration} onChange = {(e)=>{console.log(e.target.value); setExpiration(e.target.value)}}/>
+                    </p>
+                </div>
+            </div>
+            {/* -----------------------------test------------------------------ */}
             <p>
-                <label className="form-label">Quantity:  </label>
-                {errors.onHand ? 
-                <p className="bg-danger text-warning">{errors.onHand.message}</p>:""}
-                <input type="text" className="form-control" value={onHand} placeholder="provide quantity on hand" onChange = {(e)=>setOnHand(e.target.value)}/>
-            </p>
-            <p>
-                <label className="form-label">Lot Number:</label>
+                <label className="form-label">StorageLocation:</label>
                 {errors.lotNumber ? 
-                <p className="bg-danger text-warning">{errors.lotNumber.message}</p>:""}
-                <input type="text" className="form-control" value={lotNumber} onChange = {(e)=>setLotNumber(e.target.value)}/>
+                <p className="bg-danger text-warning">{errors.storageLocation.message}</p>:""}
+                <select className="form-control" value={storageLocation} onChange={(e) => setStorageLocation(e.target.value)}>
+                    <option value="">Select a storage location</option>
+                    <option value="Shelf 1">Shelf 1</option>
+                    <option value="Shelf 2">Shelf 2</option>
+                    <option value="Shelf 3">Shelf 3</option>
+                    <option value="Airway Kit">Airway Kit</option>
+                    <option value="Safe">Safe</option>
+                </select>
+                {/* <input type="text" className="form-control" value={storageLocation} onChange = {(e)=>setStorageLocation(e.target.value)}/> */}
             </p>
-            <p>
-                <label className="form-label">Expiration:</label>
-                {errors.expiration ? 
-                <p className="bg-danger text-warning">{errors.expiration.message}</p>:""}
-                <input type="date" className="form-control" value={expiration} onChange = {(e)=>{console.log(e.target.value); setExpiration(e.target.value)}}/>
-            </p>
+
             <input type="submit" className="btn btn-secondary mx-3"/>
         </form>
     )
