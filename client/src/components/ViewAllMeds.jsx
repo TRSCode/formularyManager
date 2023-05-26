@@ -193,7 +193,7 @@ const ViewAllMeds = () => {
                 >
                     Location
                 </button>
-                {/* sort by location */}
+                {/* sort by name - by resetting */}
                 <button
                     className="btn btn-secondary"
                     onClick={handleRestore}

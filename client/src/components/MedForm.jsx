@@ -5,10 +5,18 @@ const MedForm = (props) => {
     // const {formulary, setFormulary} = props;
     const [medication, setMedication] = useState("");
     const [description, setDescription] = useState("");
+    const [unitType, setUnitType] = useState("");
+    const [authorizedAmount, setAuthorizedAmount] = useState("");
     const [onHand, setOnHand] = useState("");
     const [lotNumber, setLotNumber]= useState("");
     const [storageLocation, setStorageLocation] = useState("");
     const [expiration, setExpiration] = useState("");
+    const [nsn, setNsn] = useState("");
+    const [ndc, setNdc] = useState(""); 
+    const [supplier, setSupplier] = useState("");
+    const [ciic, setCiic] = useState("");
+    const [dispenseLevel, setDispenseLevel] = useState("");
+    const [notes, setNotes] = useState("");
     const [errors,setErrors] = useState({});
     const [successMessage, setSuccessMessage] = useState('');
 
@@ -23,10 +31,18 @@ const MedForm = (props) => {
         axios.post('http://localhost:8000/api/formulary', {
             medication,
             description,
+            unitType,
+            authorizedAmount,
             onHand,
             lotNumber,
             storageLocation,
-            expiration
+            expiration,
+            nsn,
+            ndc,
+            supplier,
+            ciic,
+            dispenseLevel,
+            notes
             // expiration: formatDateForBackend(expiration)
         })
             .then(res=>{
@@ -35,10 +51,18 @@ const MedForm = (props) => {
                 // setFormulary([...formulary, res.data]);
                 setMedication("");
                 setDescription("");
+                setUnitType("");
+                setAuthorizedAmount("");
                 setOnHand("");
                 setLotNumber("");
                 setStorageLocation("");
                 setExpiration("");
+                setNsn("");
+                setNdc("");
+                setSupplier("");
+                setCiic("");
+                setDispenseLevel("");
+                setNotes("");
                 setSuccessMessage('Success!   Add another!');
             })
         .catch(err =>{
@@ -48,34 +72,66 @@ const MedForm = (props) => {
     }
     
     return (
-        <form onSubmit={onSubmitHandler} className="container p-3 mb-2 bg-dark text-white col-6">
+        <form onSubmit={onSubmitHandler} className="form-control p-3 mb-2 bg-dark text-white col-9">
             <h2>Add A Medication</h2>
             {successMessage && <h3 className="text-success">{successMessage}</h3>}
-            <p>
-                <label className="form-label">Name: </label>
-                {errors.medication ? 
-                <p className="bg-danger text-warning">{errors.medication.message}</p>:""}
-                <input type="text" className="form-control" value={medication} placeholder="ie generic/trade name (generic first)" onChange = {(e)=>setMedication(e.target.value)}/>
-            </p>
-            <p>
-                <label className="form-label">Description: </label>
-                {errors.description ? 
-                <p className="bg-danger text-warning">{errors.description.message}</p>:""}
-                <input type="text" className="form-control" value={description} placeholder="Include: Strength, Route, quantity per container" onChange = {(e)=>setDescription(e.target.value)}/>
-            </p>
-            {/* -----------------------------test------------------------------ */}
             <div className="row gap-x-20">
                 <div className="col-md">
                     <p>
-                        <label className="form-label">Quantity:  </label>
-                        {errors.onHand ? 
-                        <p className="bg-danger text-warning">{errors.onHand.message}</p>:""}
-                        <input type="text" className="form-control" value={onHand} placeholder="provide quantity on hand" onChange = {(e)=>setOnHand(e.target.value)}/>
+                        <label className="form-label">*Name:  </label>
+                        {errors.medication ? 
+                        <p className="bg-danger text-warning">{errors.medication.message}</p>:""}
+                        <input type="text" className="form-control" value={medication} placeholder="generic/trade name (generic preferred)" onChange = {(e)=>setMedication(e.target.value)}/>
                     </p>
                 </div>
                 <div className="col-md">
                     <p>
-                        <label className="form-label">Lot Number:</label>
+                        <label className="form-label">*Description: </label>
+                        {errors.description ? 
+                        <p className="bg-danger text-warning">{errors.description.message}</p>:""}
+                        <input type="text" className="form-control" value={description} placeholder="Strength/ Route/ QTY per container" onChange = {(e)=>setDescription(e.target.value)}/>
+                    </p>
+                </div>
+                <div className="col-md">
+                    <p>
+                        <label className="form-label">*Unit Type:</label>
+                        {errors.unitType ? 
+                        <p className="bg-danger text-warning">{errors.unitType.message}</p>:""}
+                        <select className="form-control" value={unitType} onChange={(e) => setUnitType(e.target.value)}>
+                            <option value="">Select a Unit Type</option>
+                            <option value="EA">EA</option>
+                            <option value="PG">PG</option>
+                            <option value="VI">VI</option>
+                            <option value="TU">TU</option>
+                            <option value="BT">BT</option>
+                            <option value="BX">BX</option>
+                            <option value="KT">KT</option>
+                            <option value="CO">CO</option>
+                            <option value="other">other</option>
+                        </select>
+                    </p>
+                </div>
+                <div className="col-md">
+                    <p>
+                        <label className="form-label">*Authorized Quantity:  </label>
+                        {errors.authorizedAmount ? 
+                        <p className="bg-danger text-warning">{errors.authorizedAmount.message}</p>:""}
+                        <input type="text" className="form-control" value={authorizedAmount} placeholder="authorized quantity" onChange = {(e)=>setAuthorizedAmount(e.target.value)}/>
+                    </p>
+                </div>
+                <div className="col-md">
+                    <p>
+                        <label className="form-label">*Quantity:  </label>
+                        {errors.onHand ? 
+                        <p className="bg-danger text-warning">{errors.onHand.message}</p>:""}
+                        <input type="text" className="form-control" value={onHand} placeholder="quantity on hand" onChange = {(e)=>setOnHand(e.target.value)}/>
+                    </p>
+                </div>
+            </div>
+            <div className="row gap-x-20">
+                <div className="col-md">
+                    <p>
+                        <label className="form-label">*Lot Number:</label>
                         {errors.lotNumber ? 
                         <p className="bg-danger text-warning">{errors.lotNumber.message}</p>:""}
                         <input type="text" className="form-control" value={lotNumber} onChange = {(e)=>setLotNumber(e.target.value)}/>
@@ -83,29 +139,93 @@ const MedForm = (props) => {
                 </div>
                 <div className="col-md">
                     <p>
-                        <label className="form-label">Expiration:</label>
+                        <label className="form-label">*Expiration:</label>
                         {errors.expiration ? 
                         <p className="bg-danger text-warning">{errors.expiration.message}</p>:""}
                         <input type="date" className="form-control" value={expiration} onChange = {(e)=>{console.log(e.target.value); setExpiration(e.target.value)}}/>
                     </p>
                 </div>
+                <div className="col-md">
+                    <p>
+                        <label className="form-label">*NSN:</label>
+                        {errors.nsn ? 
+                        <p className="bg-danger text-warning">{errors.nsn.message}</p>:""}
+                        <input type="text" className="form-control" placeholder="NSN" value={nsn} onChange = {(e)=>setNsn(e.target.value)}/>
+                    </p>
+                </div>
+                <div className="col-md">
+                    <p>
+                        <label className="form-label">NDC:</label>
+                        {errors.ndc ? 
+                        <p className="bg-danger text-warning">{errors.ndc.message}</p>:""}
+                        <input type="text" className="form-control" placeholder="NDC" value={ndc} onChange = {(e)=>setNdc(e.target.value)}/>
+                    </p>
+                </div>
+                <div className="col-md">
+                    <p>
+                        <label className="form-label">Supplier:</label>
+                        {errors.supplier ? 
+                        <p className="bg-danger text-warning">{errors.supplier.message}</p>:""}
+                        <input type="text" className="form-control" placeholder="Supplier" value={supplier} onChange = {(e)=>setSupplier(e.target.value)}/>
+                    </p>
+                </div>
             </div>
-            {/* -----------------------------test------------------------------ */}
-            <p>
-                <label className="form-label">StorageLocation:</label>
-                {errors.lotNumber ? 
-                <p className="bg-danger text-warning">{errors.storageLocation.message}</p>:""}
-                <select className="form-control" value={storageLocation} onChange={(e) => setStorageLocation(e.target.value)}>
-                    <option value="">Select a storage location</option>
-                    <option value="Shelf 1">Shelf 1</option>
-                    <option value="Shelf 2">Shelf 2</option>
-                    <option value="Shelf 3">Shelf 3</option>
-                    <option value="Airway Kit">Airway Kit</option>
-                    <option value="Safe">Safe</option>
-                </select>
-                {/* <input type="text" className="form-control" value={storageLocation} onChange = {(e)=>setStorageLocation(e.target.value)}/> */}
-            </p>
-
+            <div className="row gap-x-20">
+                <div className="col-md">
+                    <p>
+                        <label className="form-label">*CIIC:</label>
+                        {errors.ciic ? 
+                        <p className="bg-danger text-warning">{errors.ciic.message}</p>:""}
+                        <select className="form-control" value={ciic} onChange={(e) => setCiic(e.target.value)}>
+                            <option value="">Select a Category</option>
+                            <option value="Q">Q</option>
+                            <option value="R">R</option>
+                            <option value="U">U</option>
+                            <option value="J">J</option>
+                            <option value="other">other</option>
+                        </select>
+                    </p>
+                </div>
+                <div className="col-md">
+                    <p>
+                        <label className="form-label">*Dispense Level:</label>
+                        {errors.dispenseLevel ? 
+                        <p className="bg-danger text-warning">{errors.dispenseLevel.message}</p>:""}
+                        <select className="form-control" value={dispenseLevel} onChange={(e) => setDispenseLevel(e.target.value)}>
+                            <option value="">Select a Category</option>
+                            <option value="Prescriber">Prescriber</option>
+                            <option value="Delegate">Delegate</option>
+                            <option value="other">other</option>
+                        </select>
+                    </p>
+                </div>
+                <div className="col-md">
+                    <p>
+                        <label className="form-label">*Location:</label>
+                        {errors.storageLocation ? 
+                        <p className="bg-danger text-warning">{errors.storageLocation.message}</p>:""}
+                        <select className="form-control" value={storageLocation} onChange={(e) => setStorageLocation(e.target.value)}>
+                            <option value="">Select a storage location</option>
+                            <option value="Shelf1">Shelf 1</option>
+                            <option value="Shelf2">Shelf 2</option>
+                            <option value="Shelf3">Shelf 3</option>
+                            <option value="AirwayKit">Airway Kit</option>
+                            <option value="Safe">Safe</option>
+                            <option value="TurnIn">Turn In</option>
+                        </select>
+                    </p>
+                </div>
+            </div>
+            <div className="row gap-x-20">
+                <div className="col-md">
+                    <p>
+                        <label className="form-label">Notes:</label>
+                        {errors.notes ? 
+                        <p className="bg-danger text-warning">{errors.notes.message}</p>:""}
+                        <input type="text" className="form-control" placeholder="Notes and Actions" value={notes} onChange = {(e)=>setNotes(e.target.value)}/>
+                    </p>
+                </div>
+            </div>
             <input type="submit" className="btn btn-secondary mx-3"/>
         </form>
     )

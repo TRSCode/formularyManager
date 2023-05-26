@@ -16,7 +16,7 @@ const FormularySchema = new mongoose.Schema({
     },
     unitType: { 
         type: String,
-        required: [false, "Unit Type is required"],
+        required: [true, "Unit Type is required"],
         enum: ['EA', 'PG', 'VI', 'TU', 'BT', 'BX', 'KT', 'CO', 'other']
     },
     authorizedAmount: { 
@@ -66,7 +66,7 @@ const FormularySchema = new mongoose.Schema({
     // },
     nsn: { 
         type: String,
-        required: [false],
+        required: [true],
         minlength: [13, "NSN must contain 13 characters"],
         maxlength: [13, "NSN must contain 13 characters"]
     },
@@ -84,8 +84,8 @@ const FormularySchema = new mongoose.Schema({
     },
     ciic: { 
         type: String,
-        required: [false, "CIIC must select one"],
-        enum: ['Q', 'R', 'U', 'J']
+        required: [true, "CIIC must select one"],
+        enum: ['Q', 'R', 'U', 'J','other']
     },
     dispenseLevel: { type: String,
                     required: [false,"Dispense Level is required"],
