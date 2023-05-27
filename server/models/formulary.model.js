@@ -67,14 +67,14 @@ const FormularySchema = new mongoose.Schema({
     nsn: { 
         type: String,
         required: [true],
-        minlength: [13, "NSN must contain 13 characters"],
-        maxlength: [13, "NSN must contain 13 characters"]
+        minlength: [16, "NSN must contain 13 characters"],
+        maxlength: [16, "NSN must contain 13 characters"]
     },
     ndc: { 
         type: String,
-        required: [false],
-        minlength: [1, "NDC must contain at least 1 character"],
-        maxlength: [45, "NDC cannot exceed 45 characters"]
+        required: [false]
+        // minlength: [1, "NDC must contain at least 1 character"],
+        // maxlength: [45, "NDC cannot exceed 45 characters"]
     },
     supplier: { 
         type: String,
@@ -88,13 +88,13 @@ const FormularySchema = new mongoose.Schema({
         enum: ['Q', 'R', 'U', 'J','other']
     },
     dispenseLevel: { type: String,
-                    required: [false,"Dispense Level is required"],
+                    required: [true,"Dispense Level is required"],
                     enum: ['Prescriber', 'Delegate']
     },
     storageLocation: { 
         type: String,
         required: [true, "Storage Location is required"],
-        enum: ['Shelf 1', 'Shelf 2', 'Shelf 3', 'Airway Kit', 'Safe']
+        enum: ['Locker', 'Grey Cabinet', 'White Cabinet', 'Clinic Refrigerator', 'Blue Vial Bag', 'Orange Paramedic Bag', 'Safe-Black Bag', 'Safe-Blue Bag','Safe-Orange Bag','MRV', 'ALS', 'Turn-in', 'other']
     },
     activeStatus: {
         type: Boolean,

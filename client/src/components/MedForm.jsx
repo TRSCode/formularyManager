@@ -206,12 +206,19 @@ const MedForm = (props) => {
                         <p className="bg-danger text-warning">{errors.storageLocation.message}</p>:""}
                         <select className="form-control" value={storageLocation} onChange={(e) => setStorageLocation(e.target.value)}>
                             <option value="">Select a storage location</option>
-                            <option value="Shelf1">Shelf 1</option>
-                            <option value="Shelf2">Shelf 2</option>
-                            <option value="Shelf3">Shelf 3</option>
-                            <option value="AirwayKit">Airway Kit</option>
-                            <option value="Safe">Safe</option>
-                            <option value="TurnIn">Turn In</option>
+                            <option value="Locker">Locker</option>
+                            <option value="Grey Cabinet">Grey Cabinet</option>
+                            <option value="White Cabinet">White Cabinet</option>
+                            <option value="Clinic Refrigerator">Clinic Refrigerator</option>
+                            <option value="Blue Vial Bag">Blue Vial Bag</option>
+                            <option value="Orange Paramedic Bag">Orange Paramedic Bag</option>
+                            <option value="Safe-Black Bag">Safe-Black Bag</option>
+                            <option value="Safe-Blue Bag">Safe-Blue Bag</option>
+                            <option value="Safe-Orange Bag">Safe-Orange Bag</option>
+                            <option value="MRV">MRV</option>
+                            <option value="ALS">ALS</option>
+                            <option value="Turn-in">Turn In</option>
+                            <option value="Other">Other</option>
                         </select>
                     </p>
                 </div>
