@@ -7,7 +7,7 @@ export default function Dashboard() {
                 <hr/>
                 <h3>Phase I</h3>
                 <ul>
-                    <li>Basic CRUD (find all and create built into form, need to add remaining fields and update/delete</li>
+                    <li>Basic CRUD (still need: inventoryOne/viewOne/updateOne/delete</li>
                     <li>✅ Basic UI</li>
                 </ul>
                 <h3>Phase II</h3>
@@ -34,6 +34,7 @@ export default function Dashboard() {
                 <ul>
                     <li>Error messages don't clear from form w/o refresh </li> 
                     <li>Display sort is glitchy for Location and Expiration</li>
+                    <li>Hover doesn't change background of row</li>
                 </ul>
             </div>
         </div>

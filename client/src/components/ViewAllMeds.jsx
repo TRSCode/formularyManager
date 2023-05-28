@@ -6,6 +6,8 @@ const ViewAllMeds = () => {
     const [sortedFormulary, setSortedFormulary] = useState([]);
     const [isSorted, setIsSorted] = useState(false);
     const [sortByLocation, setSortByLocation] = useState(false);
+    // added for display full med info
+    const [selectedMedication, setSelectedMedication] = useState(null);
 
     useEffect(() => {
         axios
@@ -72,7 +74,7 @@ const ViewAllMeds = () => {
     //     setIsSorted(true);
     // };
 
-// ---------------attempting to sort by location----------------2
+    // ---------------attempting to sort by location----------------2
 
     // const handleSort = () => {
     //     const sortedList = [...sortedFormulary].sort((a, b) => {
@@ -116,19 +118,61 @@ const ViewAllMeds = () => {
     //             return 0;
     //         }
     //     });
-    
+
     //     if (sortByLocation) {
     //         sortedList.sort((a, b) => {
     //             return a.storageLocation.localeCompare(b.storageLocation);
     //         });
     //     }
-    
+
     //     setSortedFormulary(() => sortedList); // Use functional form of setState
-    
+
     //     setIsSorted(true);
     // };
 
-// ---------------attempting to sort by location----------------4
+    // ---------------attempting to sort by location----------------4
+
+    // ---------------start alert message----------------   
+    const displayMedicationDetails = (medication) => {
+        setSelectedMedication(medication);
+
+        const {
+            medication: medName,
+            description,
+            unitType,
+            authorizedAmount,
+            onHand,
+            lotNumber,
+            expiration,
+            nsn,
+            ndc,
+            supplier,
+            ciic,
+            dispenseLevel,
+            storageLocation,
+            activeStatus,
+            notes
+        } = medication;
+
+        const message = `
+            Medication: ${medName}
+            Description: ${description}
+            Unit Type: ${unitType}
+            Authorized Amount: ${authorizedAmount}
+            Quantity on Hand: ${onHand}
+            Lot Number: ${lotNumber}
+            Expiration: ${expiration}
+            NSN: ${nsn}
+            NDC: ${ndc}
+            Supplier: ${supplier}
+            CIIC: ${ciic}
+            Dispense Level: ${dispenseLevel}
+            Storage Location: ${storageLocation}
+            Notes: ${notes}
+    `;
+        alert(message);
+    };
+// ---------------end alert message----------------   
 
     const handleSort = () => {
         const sortedList = [...sortedFormulary].sort((a, b) => {
@@ -149,13 +193,13 @@ const ViewAllMeds = () => {
                 return locationComparison;
             }
         });
-    
+
         if (sortByLocation) {
             sortedList.sort((a, b) => {
                 return a.storageLocation.localeCompare(b.storageLocation);
             });
         }
-    
+
         setSortedFormulary(sortedList);
         setIsSorted(true);
     };
@@ -233,7 +277,7 @@ const ViewAllMeds = () => {
                             rowClassName = 'table-light';
                         }
                         return (
-                            <tr key={index} className={rowClassName}>
+                            <tr key={index} className={`${rowClassName} clickable-row hovered-row`} onClick={() => displayMedicationDetails(med)}>
                                 <td>{med.medication}</td>
                                 <td>{med.description}</td>
                                 <td>{med.onHand}</td>

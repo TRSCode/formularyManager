@@ -52,6 +52,7 @@ body {
     border-top-left-radius: 20px;
     padding: 2px;
 }
+
 .nav li:hover {
     /* background-color: #777; */
     background-color: #f0a0f0;
@@ -73,3 +74,13 @@ body {
     background-color: black;
     color: white;
 }
+
+.clickable-row {
+    cursor: pointer;
+}
+
+.hovered-row {
+    background-color: rgb(147, 143, 143);
+    cursor: pointer;
+}
+    
