@@ -8,7 +8,7 @@ const ViewAllMeds = () => {
     const [sortByLocation, setSortByLocation] = useState(false);
     // added for display full med info
     const [selectedMedication, setSelectedMedication] = useState(null);
-    
+
 
     useEffect(() => {
         axios
@@ -56,29 +56,29 @@ const ViewAllMeds = () => {
     };
 
     // ---------------start alert message----------------   
-    const displayMedicationDetails = (medication,event) => {
+    const displayMedicationDetails = (medication, event) => {
         if (event.target.tagName !== 'BUTTON') {
-        setSelectedMedication(medication);
+            setSelectedMedication(medication);
 
-        const {
-            medication: medName,
-            description,
-            unitType,
-            authorizedAmount,
-            onHand,
-            lotNumber,
-            expiration,
-            nsn,
-            ndc,
-            supplier,
-            ciic,
-            dispenseLevel,
-            storageLocation,
-            activeStatus,
-            notes
-        } = medication;
+            const {
+                medication: medName,
+                description,
+                unitType,
+                authorizedAmount,
+                onHand,
+                lotNumber,
+                expiration,
+                nsn,
+                ndc,
+                supplier,
+                ciic,
+                dispenseLevel,
+                storageLocation,
+                activeStatus,
+                notes
+            } = medication;
 
-        const message = `
+            const message = `
             Medication: ${medName}
             Description: ${description}
             Unit Type: ${unitType}
@@ -94,8 +94,8 @@ const ViewAllMeds = () => {
             Storage Location: ${storageLocation}
             Notes: ${notes}
     `;
-        alert(message);
-    }
+            alert(message);
+        }
     };
     // ---------------end alert message----------------   
 
@@ -134,24 +134,22 @@ const ViewAllMeds = () => {
         setIsSorted(false);
     };
 
-    // Function to delete a medication by ID
     const deleteMedication = (id) => {
-        axios
-            .delete(`http://localhost:8000/api/formulary/${id}`)
-            .then((res) => {
-                // console.log(res.data);
-                // Remove the deleted medication from the formulary list
-                const updatedFormulary = formulary.filter((med) => med._id !== id);
-                setFormulary(updatedFormulary);
-                // Remove the deleted medication from the sorted formulary list
-                const updatedSortedFormulary = sortedFormulary.filter(
-                    (med) => med._id !== id
-                );
-                setSortedFormulary(updatedSortedFormulary);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        const confirmDelete = window.confirm("Are you sure you want to delete this medication?");
+
+        if (confirmDelete) {
+            axios
+                .delete(`http://localhost:8000/api/formulary/${id}`)
+                .then((res) => {
+                    const updatedFormulary = formulary.filter((med) => med._id !== id);
+                    setFormulary(updatedFormulary);
+                    const updatedSortedFormulary = sortedFormulary.filter((med) => med._id !== id);
+                    setSortedFormulary(updatedSortedFormulary);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
     };
 
 
@@ -205,7 +203,7 @@ const ViewAllMeds = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {sortedFormulary.map((med,index) => {
+                    {sortedFormulary.map((med, index) => {
                         const expiring30Days = isExpiringIn30Days(med.expiration);
                         const expiring60Days = isExpiringIn60Days(med.expiration);
                         const expiring90Days = isExpiringIn90Days(med.expiration);
