@@ -172,7 +172,7 @@ const ViewAllMeds = () => {
     `;
         alert(message);
     };
-// ---------------end alert message----------------   
+    // ---------------end alert message----------------   
 
     const handleSort = () => {
         const sortedList = [...sortedFormulary].sort((a, b) => {
@@ -208,6 +208,27 @@ const ViewAllMeds = () => {
         setSortedFormulary(formulary);
         setIsSorted(false);
     };
+
+    // Function to delete a medication by ID
+    const deleteMedication = (id) => {
+        axios
+            .delete(`http://localhost:8000/api/formulary/${id}`)
+            .then((res) => {
+                console.log(res.data);
+                // Remove the deleted medication from the formulary list
+                const updatedFormulary = formulary.filter((med) => med.id !== id);
+                setFormulary(updatedFormulary);
+                // Remove the deleted medication from the sorted formulary list
+                const updatedSortedFormulary = sortedFormulary.filter(
+                    (med) => med.id !== id
+                );
+                setSortedFormulary(updatedSortedFormulary);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
 
     return (
         <div className="container">
@@ -255,10 +276,11 @@ const ViewAllMeds = () => {
                         <th scope='col'>Lot Number</th>
                         <th scope='col'>Location</th>
                         <th scope='col'>Expiration</th>
+                        <th scope='col'>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {sortedFormulary.map((med, index) => {
+                    {sortedFormulary.map((med,index) => {
                         const expiring30Days = isExpiringIn30Days(med.expiration);
                         const expiring60Days = isExpiringIn60Days(med.expiration);
                         const expiring90Days = isExpiringIn90Days(med.expiration);
@@ -284,6 +306,15 @@ const ViewAllMeds = () => {
                                 <td>{med.lotNumber}</td>
                                 <td>{med.storageLocation}</td>
                                 <td>{med.expiration}</td>
+                                {/* <td> */}
+                                    {/* Add the delete button with the onClick handler */}
+                                    {/* <button
+                                        className="btn btn-danger"
+                                        onClick={() => deleteMedication(med.id)}
+                                    >
+                                        Delete
+                                    </button>
+                                </td> */}
                             </tr>
                         );
                     })}
