@@ -8,6 +8,7 @@ const ViewAllMeds = () => {
     const [sortByLocation, setSortByLocation] = useState(false);
     // added for display full med info
     const [selectedMedication, setSelectedMedication] = useState(null);
+    
 
     useEffect(() => {
         axios
@@ -54,86 +55,9 @@ const ViewAllMeds = () => {
         return expirationDate < currentDate;
     };
 
-    // ---------------attempting to sort by location----------------
-
-    // const handleSort = () => {
-    //     const sortedList = [...sortedFormulary].sort((a, b) => {
-    //         if (isExpired(a.expiration) && !isExpired(b.expiration)) {
-    //             return -1;
-    //         } else if (!isExpired(a.expiration) && isExpired(b.expiration)) {
-    //             return 1;
-    //         } else if (a.expiration < b.expiration) {
-    //             return -1;
-    //         } else if (a.expiration > b.expiration) {
-    //             return 1;
-    //         } else {
-    //             return 0;
-    //         }
-    //     });
-    //     setSortedFormulary(sortedList);
-    //     setIsSorted(true);
-    // };
-
-    // ---------------attempting to sort by location----------------2
-
-    // const handleSort = () => {
-    //     const sortedList = [...sortedFormulary].sort((a, b) => {
-    //         if (isExpired(a.expiration) && !isExpired(b.expiration)) {
-    //             return -1;
-    //         } else if (!isExpired(a.expiration) && isExpired(b.expiration)) {
-    //             return 1;
-    //         } else if (a.expiration < b.expiration) {
-    //             return -1;
-    //         } else if (a.expiration > b.expiration) {
-    //             return 1;
-    //         } else {
-    //             return 0;
-    //         }
-    //     });
-
-    //     // Sort by storage location if enabled
-    //     if (sortByLocation) {
-    //         sortedList.sort((a, b) => {
-    //             return a.storageLocation.localeCompare(b.storageLocation);
-    //         });
-    //     }
-
-    //     setSortedFormulary(sortedList);
-    //     setIsSorted(true);
-    // };
-
-    // ---------------attempting to sort by location----------------3
-
-    // const handleSort = () => {
-    //     const sortedList = [...sortedFormulary].sort((a, b) => {
-    //         if (isExpired(a.expiration) && !isExpired(b.expiration)) {
-    //             return -1;
-    //         } else if (!isExpired(a.expiration) && isExpired(b.expiration)) {
-    //             return 1;
-    //         } else if (a.expiration < b.expiration) {
-    //             return -1;
-    //         } else if (a.expiration > b.expiration) {
-    //             return 1;
-    //         } else {
-    //             return 0;
-    //         }
-    //     });
-
-    //     if (sortByLocation) {
-    //         sortedList.sort((a, b) => {
-    //             return a.storageLocation.localeCompare(b.storageLocation);
-    //         });
-    //     }
-
-    //     setSortedFormulary(() => sortedList); // Use functional form of setState
-
-    //     setIsSorted(true);
-    // };
-
-    // ---------------attempting to sort by location----------------4
-
     // ---------------start alert message----------------   
-    const displayMedicationDetails = (medication) => {
+    const displayMedicationDetails = (medication,event) => {
+        if (event.target.tagName !== 'BUTTON') {
         setSelectedMedication(medication);
 
         const {
@@ -171,6 +95,7 @@ const ViewAllMeds = () => {
             Notes: ${notes}
     `;
         alert(message);
+    }
     };
     // ---------------end alert message----------------   
 
@@ -214,13 +139,13 @@ const ViewAllMeds = () => {
         axios
             .delete(`http://localhost:8000/api/formulary/${id}`)
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 // Remove the deleted medication from the formulary list
-                const updatedFormulary = formulary.filter((med) => med.id !== id);
+                const updatedFormulary = formulary.filter((med) => med._id !== id);
                 setFormulary(updatedFormulary);
                 // Remove the deleted medication from the sorted formulary list
                 const updatedSortedFormulary = sortedFormulary.filter(
-                    (med) => med.id !== id
+                    (med) => med._id !== id
                 );
                 setSortedFormulary(updatedSortedFormulary);
             })
@@ -239,7 +164,7 @@ const ViewAllMeds = () => {
                 <span className="legend60 me-2 p-2"> 60 days </span>
                 <span className="legend90 p-2"> 90 days </span>
                 <span className="legendExp p-2"> Expired </span>
-                <spam className="ms-5 me-2 pt-2 fw-bold">Sort by:</spam>
+                <span className="ms-5 me-2 pt-2 fw-bold">Sort by:</span>
                 <button
                     className="btn btn-secondary"
                     onClick={handleSort}
@@ -299,22 +224,21 @@ const ViewAllMeds = () => {
                             rowClassName = 'table-light';
                         }
                         return (
-                            <tr key={index} className={`${rowClassName} clickable-row hovered-row`} onClick={() => displayMedicationDetails(med)}>
+                            <tr key={index} className={`${rowClassName} clickable-row hovered-row`} onClick={(event) => displayMedicationDetails(med, event)}>
                                 <td>{med.medication}</td>
                                 <td>{med.description}</td>
                                 <td>{med.onHand}</td>
                                 <td>{med.lotNumber}</td>
                                 <td>{med.storageLocation}</td>
                                 <td>{med.expiration}</td>
-                                {/* <td> */}
-                                    {/* Add the delete button with the onClick handler */}
-                                    {/* <button
+                                <td>
+                                    <button
                                         className="btn btn-danger"
-                                        onClick={() => deleteMedication(med.id)}
+                                        onClick={() => deleteMedication(med._id)}
                                     >
                                         Delete
                                     </button>
-                                </td> */}
+                                </td>
                             </tr>
                         );
                     })}
