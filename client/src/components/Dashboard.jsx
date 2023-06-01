@@ -8,7 +8,7 @@ export default function Dashboard() {
                 <h3>Phase I</h3>
                 <ul>
                     <li>✅Build Wrire Frame (https://share.balsamiq.com/c/3Yqk3JmJ2fAgsPf2rBaH7S.png)</li>
-                    <li>Basic CRUD (still need: inventoryOne/viewOne/updateOne/delete</li>
+                    <li>Basic CRUD (still need: inventoryAll/viewOne</li>
                     <li>✅ Basic UI</li>
                 </ul>
                 <h3>Phase II</h3>

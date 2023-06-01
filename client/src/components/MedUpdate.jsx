@@ -70,8 +70,12 @@ const MedUpdate = () => {
                 // setSuccessMessage("Medication successfully updated!");
                 navigate('/formulary');
             })
-            .catch((err) => console.log(err));
-        };
+            // .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err.response);
+                setErrors(err.response.data.errors);
+            });
+        }
 
     return (
         <form onSubmit={onSubmitHandler} className="form-control p-3 mb-2 bg-dark text-white col-9">

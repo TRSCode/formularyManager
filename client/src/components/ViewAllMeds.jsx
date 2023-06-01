@@ -161,11 +161,11 @@ const ViewAllMeds = () => {
                 <span className="me-2 pt-2 fw-bold">Expires In: </span>
                 <span className="legend30 me-2 p-2"> 30 days </span>
                 <span className="legend60 me-2 p-2"> 60 days </span>
-                <span className="legend90 p-2"> 90 days </span>
+                <span className="legend90 me-2 p-2"> 90 days </span>
                 <span className="legendExp p-2"> Expired </span>
                 <span className="ms-5 me-2 pt-2 fw-bold">Sort by:</span>
                 <button
-                    className="btn btn-secondary"
+                    className="btn btn-secondary btn-sm"
                     onClick={handleSort}
                     disabled={isSorted}
                 >
@@ -173,7 +173,7 @@ const ViewAllMeds = () => {
                 </button>
                 {/* sort by location */}
                 <button
-                    className="btn btn-secondary mx-2"
+                    className="btn btn-secondary btn-sm mx-2"
                     onClick={() => {
                         setSortByLocation(!sortByLocation);
                         handleSort();
@@ -184,7 +184,7 @@ const ViewAllMeds = () => {
                 </button>
                 {/* sort by name - by resetting */}
                 <button
-                    className="btn btn-secondary"
+                    className="btn btn-secondary btn-sm"
                     onClick={handleRestore}
                     disabled={!isSorted}
                 >
@@ -212,7 +212,7 @@ const ViewAllMeds = () => {
                         const hasExpired = isExpired(med.expiration);
                         let rowClassName = '';
                         if (hasExpired) {
-                            rowClassName = 'table-dark';
+                            rowClassName = 'expTable';
                         } else if (expiring30Days) {
                             rowClassName = 'table-danger';
                         } else if (expiring60Days) {
@@ -231,9 +231,13 @@ const ViewAllMeds = () => {
                                 <td>{med.storageLocation}</td>
                                 <td>{med.expiration}</td>
                                 <td>
-                                    <Link to={'/formulary/' + med._id}>Edit</Link>
+                                    <Link to={`/formulary/${med._id}`}>
+                                        <button className="btn btn-primary btn-sm">
+                                            Edit
+                                        </button>
+                                    </Link>
                                     <button
-                                        className="btn btn-danger btn-sm"
+                                        className="btn btn-danger btn-sm ms-2"
                                         onClick={() => deleteMedication(med._id)}
                                     >
                                         Delete
