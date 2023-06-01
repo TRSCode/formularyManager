@@ -5,6 +5,7 @@ import MedForm from './components/MedForm';
 import ViewAllMeds from './components/ViewAllMeds'
 import Navbar from "./Navbar"
 import Dashboard from './components/Dashboard';
+import MedUpdate from './components/MedUpdate';
 import "./styles.css"
 const App = () => {
 
@@ -16,6 +17,7 @@ const App = () => {
         <Route element = {<Dashboard/>} path = "/dashboard" />
         <Route element = {<ViewAllMeds/>} path="/formulary" />
         <Route element = {<MedForm/>} path="/add" />
+        <Route element = {<MedUpdate/>} path="/formulary/:id" />
       </Routes>
     </div>
   );

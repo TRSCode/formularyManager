@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const ViewAllMeds = () => {
     const [formulary, setFormulary] = useState([]);
@@ -230,8 +231,9 @@ const ViewAllMeds = () => {
                                 <td>{med.storageLocation}</td>
                                 <td>{med.expiration}</td>
                                 <td>
+                                    <Link to={'/formulary/' + med._id}>Edit</Link>
                                     <button
-                                        className="btn btn-danger"
+                                        className="btn btn-danger btn-sm"
                                         onClick={() => deleteMedication(med._id)}
                                     >
                                         Delete
