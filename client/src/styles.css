@@ -46,9 +46,8 @@ body {
 }
 
 .nav li.active {
-    /* background-color: #555; */
-    background-color: #f479f3;
-    /* border-top-right-radius: 20px; */
+    /* background-color: #f479f3; */
+    background-color: #47a1f6;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     margin-top: 8px;
@@ -57,7 +56,7 @@ body {
 
 .nav li:hover {
     /* background-color: #777; */
-    background-color: #f0a0f0;
+    background-color: #6dcdf7;
 }
 
 .legend30 {
@@ -83,7 +82,7 @@ body {
 
 .expTable {
     background-color: rgb(156, 156, 156);
-    border: 1px solid rgb(156, 156, 156);
+    border: 1px solid rgb(142, 140, 140);
 }
 
 /* .hovered-row {
