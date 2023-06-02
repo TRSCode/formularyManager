@@ -39,14 +39,14 @@ const ViewAllMeds = () => {
         return isExpiringSoon(expiration, 60);
     };
 
-    const isExpiringIn90Days = (expiration) => {
-        return isExpiringSoon(expiration, 90);
+    const isExpiringIn120Days = (expiration) => {
+        return isExpiringSoon(expiration, 120);
     };
 
-    const isExpiringMoreThan90Days = (expiration) => {
+    const isExpiringMoreThan120Days = (expiration) => {
         const expirationDate = new Date(expiration);
         const currentDate = new Date();
-        const futureDate = new Date().setDate(currentDate.getDate() + 90);
+        const futureDate = new Date().setDate(currentDate.getDate() + 120);
         return expirationDate > futureDate;
     };
 
@@ -161,7 +161,7 @@ const ViewAllMeds = () => {
                 <span className="me-2 pt-2 fw-bold">Expires In: </span>
                 <span className="legend30 me-2 p-2"> 30 days </span>
                 <span className="legend60 me-2 p-2"> 60 days </span>
-                <span className="legend90 me-2 p-2"> 90 days </span>
+                <span className="legend120 me-2 p-2"> 120 days </span>
                 <span className="legendExp p-2"> Expired </span>
                 <span className="ms-5 me-2 pt-2 fw-bold">Sort by:</span>
                 <button
@@ -207,8 +207,8 @@ const ViewAllMeds = () => {
                     {sortedFormulary.map((med, index) => {
                         const expiring30Days = isExpiringIn30Days(med.expiration);
                         const expiring60Days = isExpiringIn60Days(med.expiration);
-                        const expiring90Days = isExpiringIn90Days(med.expiration);
-                        const expiringMoreThan90Days = !expiring30Days && !expiring60Days && !expiring90Days && isExpiringMoreThan90Days(med.expiration);
+                        const expiring120Days = isExpiringIn120Days(med.expiration);
+                        const expiringMoreThan120Days = !expiring30Days && !expiring60Days && !expiring120Days && isExpiringMoreThan120Days(med.expiration);
                         const hasExpired = isExpired(med.expiration);
                         let rowClassName = '';
                         if (hasExpired) {
@@ -217,9 +217,9 @@ const ViewAllMeds = () => {
                             rowClassName = 'table-danger';
                         } else if (expiring60Days) {
                             rowClassName = 'table-warning';
-                        } else if (expiring90Days) {
+                        } else if (expiring120Days) {
                             rowClassName = 'table-info';
-                        } else if (expiringMoreThan90Days) {
+                        } else if (expiringMoreThan120Days) {
                             rowClassName = 'table-light';
                         }
                         return (

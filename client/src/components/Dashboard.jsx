@@ -43,6 +43,11 @@ export default function Dashboard() {
                     <li>Display sort is glitchy for Location and Expiration</li>
                     <li>Hover doesn't change background of row</li>
                 </ul>
+                <h3>Feedback</h3>
+                <ul>
+                    <li>✅ change 30/60/90 to 30/60/120 days till expiration</li>
+                    <li>✅ add price per unit for forecasting budget</li>
+                </ul>
             </div>
         </div>
     )

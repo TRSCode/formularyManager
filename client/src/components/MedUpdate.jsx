@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+// import { set } from 'mongoose';
 
 const MedUpdate = () => {
     const navigate = useNavigate();
@@ -9,6 +10,7 @@ const MedUpdate = () => {
     const [medication, setMedication] = useState("");
     const [description, setDescription] = useState("");
     const [unitType, setUnitType] = useState("");
+    const [unitCost, setUnitCost] = useState("");
     const [authorizedAmount, setAuthorizedAmount] = useState("");
     const [onHand, setOnHand] = useState("");
     const [lotNumber, setLotNumber]= useState("");
@@ -30,6 +32,7 @@ const MedUpdate = () => {
             setMedication(res.data.medication);
             setDescription(res.data.description);
             setUnitType(res.data.unitType);
+            setUnitCost(res.data.unitCost);
             setAuthorizedAmount(res.data.authorizedAmount);
             setOnHand(res.data.onHand);
             setLotNumber(res.data.lotNumber);
@@ -51,6 +54,7 @@ const MedUpdate = () => {
             medication: medication,
             description: description,
             unitType: unitType,
+            unitCost: unitCost,
             authorizedAmount: authorizedAmount,
             onHand: onHand,
             lotNumber: lotNumber,
@@ -116,6 +120,14 @@ const MedUpdate = () => {
                         <option value="other">other</option>
                     </select>
                 </p>
+            </div>
+            <div className="col-md">
+                    <p>
+                        <label className="form-label">*Cost per unit:  </label>
+                        {errors.unitCost ? 
+                        <p className="bg-danger text-warning">{errors.unitCost.message}</p>:""}
+                        <input type="text" className="form-control" value={unitCost} placeholder="cost per unit" onChange = {(e)=>setUnitCost(e.target.value)}/>
+                    </p>
             </div>
             <div className="col-md">
                 <p>

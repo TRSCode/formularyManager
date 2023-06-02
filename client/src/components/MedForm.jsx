@@ -6,6 +6,7 @@ const MedForm = (props) => {
     const [medication, setMedication] = useState("");
     const [description, setDescription] = useState("");
     const [unitType, setUnitType] = useState("");
+    const [unitCost, setUnitCost] = useState("");
     const [authorizedAmount, setAuthorizedAmount] = useState("");
     const [onHand, setOnHand] = useState("");
     const [lotNumber, setLotNumber]= useState("");
@@ -32,6 +33,7 @@ const MedForm = (props) => {
             medication,
             description,
             unitType,
+            unitCost,
             authorizedAmount,
             onHand,
             lotNumber,
@@ -52,6 +54,7 @@ const MedForm = (props) => {
                 setMedication("");
                 setDescription("");
                 setUnitType("");
+                setUnitCost("");
                 setAuthorizedAmount("");
                 setOnHand("");
                 setLotNumber("");
@@ -109,6 +112,14 @@ const MedForm = (props) => {
                             <option value="CO">CO</option>
                             <option value="other">other</option>
                         </select>
+                    </p>
+                </div>
+                <div className="col-md">
+                    <p>
+                        <label className="form-label">*Cost per unit:  </label>
+                        {errors.unitCost ? 
+                        <p className="bg-danger text-warning">{errors.unitCost.message}</p>:""}
+                        <input type="text" className="form-control" value={unitCost} placeholder="cost per unit" onChange = {(e)=>setUnitCost(e.target.value)}/>
                     </p>
                 </div>
                 <div className="col-md">
