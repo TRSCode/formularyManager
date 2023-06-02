@@ -20,12 +20,12 @@ const FormularySchema = new mongoose.Schema({
         enum: ['EA', 'PG', 'VI', 'TU', 'BT', 'BX', 'KT', 'CO', 'other']
     },
     unitCost: {
-        type: Number,
+        type: String,
         required: [true, "Unit Cost is required"]
     },
     authorizedAmount: { 
         type: Number,
-        required: [false, "Quantity Authorized is required"],
+        required: [true, "Quantity Authorized is required"],
         minlength: [1, "Quantity Authorized must contain a number"],
         maxlength: [10, "Quantity Authorized cannot exceed 10 numbers"]
     },
