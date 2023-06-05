@@ -10,7 +10,6 @@ Overview:
 Formulary Manager AKA Med Manager is a tool that simplifies tracking medications in stock for organizations such as small medical clinics and response units (EMS, Federal Response Teams, etc).  This tool will eliminate the need for binders and paper logs.  The user will be able to see what medications they have, where, and how much.  This tool simplifies inventory.  Managers will be able to conduct oversight and forecast spending.
 
 This project intends to accomplish the following:
-* Track medications by percent on hand
 * Track expiration dates of medications giving the user a warning if meds will expire w/i 30/60/120 days and medications that have expired.
 * Initially all users are full-access users until login/registration is complete
 * Full-access users will be able to add and remove formulary items
@@ -19,6 +18,7 @@ This project intends to accomplish the following:
 
 Product Backlog:
 V.2 features will include:
+* Track medications by percent on hand
 * User registration and login
 * API to openFDA to search medications 
 * Cross reference openFDA API prior to creating new formulary entry to ensure an accurate medication is entered
