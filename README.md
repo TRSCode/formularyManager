@@ -25,6 +25,7 @@ V.2 features will include:
 * There will be user levels (full-access, inventory access, and view only)
 * View only users will be limited to view the formulary and status of medications
 * Create inventory records
+* Create a method to utilize or waste meds
 * Order Request for medications
 * bulk formulary entries through file upload
 * integrate appropriate forms needed by regulatory agencies
