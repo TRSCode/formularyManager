@@ -14,7 +14,7 @@ export default function Dashboard() {
                     <li>✅ Highlight med if expiring in 30, 60, and 90 days</li>
                     <li>✅ Highlight med if expired</li>
                     <li>☑️ Create Actions Menu (may need to add viewOne)</li>
-                    <li>☑️ Sort by name, exp, location (glitchy) </li>
+                    <li>✅ Sort by name, exp, location (glitchy) </li>
                     <li>Conduct Inventory sorted by location that also updates quantity on hand</li>
                 </ul>
                 <h3>Phase II</h3>
