@@ -4,10 +4,8 @@ import { Link } from 'react-router-dom';
 
 const ViewAllMeds = () => {
     const [formulary, setFormulary] = useState([]);
-    const [sortedFormulary, setSortedFormulary] = useState([]);
+    const [sortedFormulary, setSortedFormulary] = useState([...formulary].sort((a, b) => a.medication.localeCompare(b.medication)));
     const [isSorted, setIsSorted] = useState(false);
-    const [sortByLocation, setSortByLocation] = useState(false);
-    // added for display full med info
     const [selectedMedication, setSelectedMedication] = useState(null);
 
 
@@ -75,7 +73,7 @@ const ViewAllMeds = () => {
                 ciic,
                 dispenseLevel,
                 storageLocation,
-                activeStatus,
+                // activeStatus,
                 notes
             } = medication;
 
@@ -99,31 +97,33 @@ const ViewAllMeds = () => {
         }
     };
     // ---------------end alert message----------------   
+    const handleSort = (sortBy) => {
+        let sortedList = [...sortedFormulary]; 
 
-    const handleSort = () => {
-        const sortedList = [...sortedFormulary].sort((a, b) => {
-            if (isExpired(a.expiration) && !isExpired(b.expiration)) {
-                return -1;
-            } else if (!isExpired(a.expiration) && isExpired(b.expiration)) {
-                return 1;
-            } else if (a.expiration < b.expiration) {
-                return -1;
-            } else if (a.expiration > b.expiration) {
-                return 1;
-            } else {
-                // Sort by storage location and medication
+        if (sortBy === "expiration") {
+            sortedList.sort((a, b) => {
+                if (isExpired(a.expiration) && !isExpired(b.expiration)) {
+                    return -1;
+                } else if (!isExpired(a.expiration) && isExpired(b.expiration)) {
+                    return 1;
+                } else if (a.expiration < b.expiration) {
+                    return -1;
+                } else if (a.expiration > b.expiration) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            });
+        } else if (sortBy === "location") {
+            sortedList.sort((a, b) => {
                 const locationComparison = a.storageLocation.localeCompare(b.storageLocation);
                 if (locationComparison === 0) {
                     return a.medication.localeCompare(b.medication);
                 }
                 return locationComparison;
-            }
-        });
-
-        if (sortByLocation) {
-            sortedList.sort((a, b) => {
-                return a.storageLocation.localeCompare(b.storageLocation);
             });
+        } else if (sortBy === "alphabetical") {
+            sortedList.sort((a, b) => a.medication.localeCompare(b.medication));
         }
 
         setSortedFormulary(sortedList);
@@ -131,7 +131,7 @@ const ViewAllMeds = () => {
     };
 
     const handleRestore = () => {
-        setSortedFormulary(formulary);
+        setSortedFormulary([...formulary].sort((a, b) => a.medication.localeCompare(b.medication)));
         setIsSorted(false);
     };
 
@@ -164,32 +164,12 @@ const ViewAllMeds = () => {
                 <span className="legend120 me-2 p-2"> 120 days </span>
                 <span className="legendExp p-2"> Expired </span>
                 <span className="ms-5 me-2 pt-2 fw-bold">Sort by:</span>
-                <button
-                    className="btn btn-dark btn-sm"
-                    onClick={handleSort}
-                    disabled={isSorted}
-                >
-                    Exp.
-                </button>
-                {/* sort by location */}
-                <button
-                    className="btn btn-dark btn-sm mx-2"
-                    onClick={() => {
-                        setSortByLocation(!sortByLocation);
-                        handleSort();
-                    }}
-                    disabled={isSorted}
-                >
-                    Location
-                </button>
-                {/* sort by name - by resetting */}
-                <button
-                    className="btn btn-dark btn-sm"
-                    onClick={handleRestore}
-                    disabled={!isSorted}
-                >
-                    Name
-                </button>
+                <select onChange={(e) => handleSort(e.target.value)}>
+                    <option value="">Sort by</option>
+                    <option value="alphabetical">Name</option>
+                    <option value="expiration">Expiration</option>
+                    <option value="location">Location</option>
+                </select>
             </div>
             <table className='table border-dark'>
                 <thead>
