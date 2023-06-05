@@ -165,7 +165,7 @@ const ViewAllMeds = () => {
                 <span className="legendExp p-2"> Expired </span>
                 <span className="ms-5 me-2 pt-2 fw-bold">Sort by:</span>
                 <button
-                    className="btn btn-secondary btn-sm"
+                    className="btn btn-dark btn-sm"
                     onClick={handleSort}
                     disabled={isSorted}
                 >
@@ -173,7 +173,7 @@ const ViewAllMeds = () => {
                 </button>
                 {/* sort by location */}
                 <button
-                    className="btn btn-secondary btn-sm mx-2"
+                    className="btn btn-dark btn-sm mx-2"
                     onClick={() => {
                         setSortByLocation(!sortByLocation);
                         handleSort();
@@ -184,7 +184,7 @@ const ViewAllMeds = () => {
                 </button>
                 {/* sort by name - by resetting */}
                 <button
-                    className="btn btn-secondary btn-sm"
+                    className="btn btn-dark btn-sm"
                     onClick={handleRestore}
                     disabled={!isSorted}
                 >
