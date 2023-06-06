@@ -14,7 +14,7 @@ export default function Dashboard() {
                     <li>✅ Highlight med if expiring in 30, 60, and 90 days</li>
                     <li>✅ Highlight med if expired</li>
                     <li>☑️ Create Actions Menu (may need to add viewOne)</li>
-                    <li>✅ Sort by name, exp, location (glitchy) </li>
+                    <li>✅ Sort by name, exp, location</li>
                     <li>Conduct Inventory sorted by location that also updates quantity on hand</li>
                 </ul>
                 <h3>Phase II</h3>
@@ -40,8 +40,7 @@ export default function Dashboard() {
                 <hr/>
                 <ul>
                     <li>Validation messages don't clear from MedForm w/o refresh </li> 
-                    <li>Display sort is glitchy for Location and Expiration</li>
-                    <li>Hover doesn't change background of row</li>
+                    <li>Still responsive, but doesn't look good on small screens after adding action menu</li>
                 </ul>
                 <h3>Feedback</h3>
                 <ul>

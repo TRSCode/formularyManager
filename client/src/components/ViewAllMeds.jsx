@@ -171,7 +171,7 @@ const ViewAllMeds = () => {
                     <option value="location">Location</option>
                 </select>
             </div>
-            <table className='table border-dark'>
+            <table className='table border-dark table-hover'>
                 <thead>
                     <tr>
                         <th scope='col'>Name</th>
