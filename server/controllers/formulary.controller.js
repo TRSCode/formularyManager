@@ -1,4 +1,4 @@
-const Formulary = require('../models/formulary.model');    /* this is new */
+const Formulary = require('../models/formulary.model');   
 
 module.exports = {
     // CREATE MED
