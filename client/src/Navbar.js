@@ -6,6 +6,7 @@ export default function Navbar() {
         <a href="/dashboard" className="site-title"><img src={logoMM} className="logoSize me-2" alt="Med Manager" />Med Manager</a>
         <ul>
             <CustomLink href="/formulary">Formulary</CustomLink>
+            <CustomLink href="/formulary/inventory">Inventory</CustomLink>
             <CustomLink href="/add">Add Med</CustomLink>
             <CustomLink href="/dashboard">Home</CustomLink>
         </ul>

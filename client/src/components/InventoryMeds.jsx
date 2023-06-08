@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const InventoryMeds = () => {
-    const history = useHistory();
+    // const history = useHistory();
     const [medications, setMedications] = useState([]);
     const [inventoryAmounts, setInventoryAmounts] = useState({});
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/medications')
+        axios.get('http://localhost:8000/api/formulary')
             .then((response) => {
                 const groupedMedications = response.data.reduce((acc, medication) => {
                     const location = medication.storageLocation;
@@ -59,7 +59,7 @@ const InventoryMeds = () => {
                 // Handle successful response
                 console.log(response.data);
                 // Redirect to printable view
-                history.push('/printable');
+                // history.push('/printable');
             })
             .catch((error) => {
                 // Handle error
