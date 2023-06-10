@@ -5,6 +5,7 @@ const InventoryMeds = () => {
     const [medications, setMedications] = useState([]);
     const [inventoryAmounts, setInventoryAmounts] = useState({});
 
+
     useEffect(() => {
         axios
             .get('http://localhost:8000/api/formulary')
@@ -78,7 +79,7 @@ const InventoryMeds = () => {
 
         // Send the inventory data to the server
         axios
-            .post('http://localhost:8000/api/inventory', inventory)
+            .patch('http://localhost:8000/api/formulary/inventory', inventory)
             .then((response) => {
                 // Handle successful response
                 console.log(response.data);
@@ -130,3 +131,4 @@ const InventoryMeds = () => {
 };
 
 export default InventoryMeds;
+

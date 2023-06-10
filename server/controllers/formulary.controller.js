@@ -37,6 +37,16 @@ module.exports = {
         Formulary.deleteOne({_id:req.params.id})
         .then(deleteOneMed => res.json(deleteOneMed))
         .catch((err) => console.log(err))
-    }
+    },
 
+    // UPDATE INVENTORY
+    updateInventory: (req, res) => {
+        Formulary.findByIdAndUpdate(
+        { _id: req.params.id },
+        { inventoryAmount: req.body.inventoryAmount },
+        { new: true, runValidators: true }
+        )
+        .then(updateMed => res.json(updateMed))
+        .catch(err => res.status(400).json(err));
+    }
 }

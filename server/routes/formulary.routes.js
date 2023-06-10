@@ -6,4 +6,5 @@ module.exports = (app) => {
     app.get('/api/formulary/:id', FormularyController.getOneMed);
     app.patch('/api/formulary/:id', FormularyController.updateMed);
     app.delete('/api/formulary/:id', FormularyController.deleteMed);
+    app.patch('/api/formulary/inventory/:id', FormularyController.updateInventory);
 }
