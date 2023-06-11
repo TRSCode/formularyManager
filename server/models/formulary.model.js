@@ -37,7 +37,7 @@ const FormularySchema = new mongoose.Schema({
     },
     inventoryAmount: { 
         type: Number,
-        required: [false, "Inventory Amount is required"],
+        // required: [false, "Inventory Amount is required"],
         // minlength: [1, "Amount on hand must contain a number"],
         // maxlength: [10, "Amount on hand cannot exceed 10 numbers"]
     },

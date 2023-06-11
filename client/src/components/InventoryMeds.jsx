@@ -5,7 +5,6 @@ const InventoryMeds = () => {
     const [medications, setMedications] = useState([]);
     const [inventoryAmounts, setInventoryAmounts] = useState({});
 
-
     useEffect(() => {
         axios
             .get('http://localhost:8000/api/formulary')
@@ -26,9 +25,7 @@ const InventoryMeds = () => {
 
                 // Sort the medications within each group
                 sortedLocations.forEach((location) => {
-                    groupedMedications[location].sort((a, b) =>
-                        a.medication.localeCompare(b.medication)
-                    );
+                    groupedMedications[location].sort((a, b) => a.medication.localeCompare(b.medication));
                 });
 
                 // Flatten the grouped medications and set them in state
@@ -51,47 +48,38 @@ const InventoryMeds = () => {
             ...prevInventoryAmounts,
             [medicationId]: value,
         }));
+        setMedications(medications.map((item)=>{return (item.id===medicationId) ? {...item, inventory:value} : item}))
     };
+// -----------------------6th attempt-------------------------
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(medications);
 
-        // Update the onHand amount for each medication based on the inventoryAmount
-        const updatedMedications = medications.map((medication) => ({
-            ...medication,
-            onHand: inventoryAmounts[medication.id] || medication.onHand,
-        }));
+    // Create an array of medications with their updated inventory amount
+    const updatedMedications = medications.map((medication) => ({
+        _id: medication._id,
+        inventoryAmount: inventoryAmounts[medication.id] || '',
+    }));
 
-        // Create the inventory object with the updated medication data
-        const inventory = {
-            medications: updatedMedications.map((medication) => ({
-                medication: medication.medication,
-                description: medication.description,
-                unitType: medication.unitType,
-                lotNumber: medication.lotNumber,
-                expiration: medication.expiration,
-                onHand: medication.onHand,
-                // Set the inventory amount to an empty string if it's not defined
-                inventoryAmount: inventoryAmounts[medication.id] || '',
-                storageLocation: medication.storageLocation,
-            })),
-        };
+    // Make an HTTP request to update the inventory in the backend
+    const url = 'http://localhost:8000/api/formulary/updateInventory';
+    axios
+        .patch(url, { medications: updatedMedications })
+        .then((response) => {
+            // Handle successful response
+            console.log(response.data);
+        })
+        .catch((error) => {
+            // Handle error
+            console.error(error);
+        });
 
-        // Send the inventory data to the server
-        axios
-            .patch('http://localhost:8000/api/formulary/inventory', inventory)
-            .then((response) => {
-                // Handle successful response
-                console.log(response.data);
-            })
-            .catch((error) => {
-                // Handle error
-                console.error(error);
-            });
+    // Clear the form fields after submission
+    setInventoryAmounts({});
+};
 
-        // Clear the form fields after submission
-        setInventoryAmounts({});
-    };
+// heck of a time figuring out how to update a field in multiple objects in an array of objects.  Attempted update, updateMany, finally bulkWrite
 
     return (
         <form onSubmit={handleSubmit}>
@@ -117,7 +105,10 @@ const InventoryMeds = () => {
                                 className="form-control"
                                 placeholder="Enter inventory amount"
                                 value={inventoryAmounts[medication.id] || ''}
+
+                                // onChange={(e) => setMedications(medications.map((item)=>{return (item.id===medication.id) ? {...item, inventory:e.target.value} : item}))}
                                 onChange={(e) => handleInventoryChange(medication.id, e)}
+
                             />
                         </div>
                     </div>
