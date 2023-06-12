@@ -7,7 +7,7 @@ export default function Dashboard() {
                 <hr/>
                 <h3>Phase I</h3>
                 <ul>
-                    <li>✅ Build Wire Frame (https://share.balsamiq.com/c/3Yqk3JmJ2fAgsPf2rBaH7S.png)</li>
+                    <li>✅ Build Wire Frame</li>
                     <li>✅ Basic CRUD</li>
                     <li>✅ Basic UI</li>
                     <li>✅ Display oneMed as an Alert message</li>
@@ -15,13 +15,13 @@ export default function Dashboard() {
                     <li>✅ Highlight med if expired</li>
                     <li>☑️ Create Actions Menu (may need to add viewOne)</li>
                     <li>✅ Sort by name, exp, location</li>
-                    <li>Conduct Inventory sorted by location that also updates quantity on hand</li>
+                    <li>☑️ Conduct Inventory sorted by location that also updates quantity on hand</li>
                 </ul>
                 <h3>Phase II</h3>
                 <ul>
                     <li>Add user with user levels (1-4, systemAdmin, manager with viewOnly, manager with update/delete, user with view and inventory)</li>
                     <li>Create pdf upon completion of inventory and save into DB</li>
-                    <li>Create ability for inventory to be signed by person who completed the inventory and a witness (for controlled substances) </li>
+                    <li>☑️ Create ability for inventory to be signed by person who completed the inventory and a witness (for controlled substances) </li>
                     <li>Create useMed feature (include notes that state who and why a med was dispensed/used)</li>
                     <li>Improve Dashboard to have status of meds and info panel (consider adding openFDA API) </li>
                 </ul>

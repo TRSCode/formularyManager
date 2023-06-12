@@ -7,6 +7,7 @@ import Navbar from "./Navbar"
 import Dashboard from './components/Dashboard';
 import MedUpdate from './components/MedUpdate';
 import InventoryMeds from './components/InventoryMeds';
+import PrintableView from './components/PrintableView';
 import "./styles.css"
 const App = () => {
 
@@ -18,6 +19,7 @@ const App = () => {
         <Route element = {<Dashboard/>} path = "/dashboard" />
         <Route element = {<ViewAllMeds/>} path="/formulary" />
         <Route element = {<InventoryMeds/>} path="/formulary/inventory" />
+        <Route element = {<PrintableView/>} path="/formulary/inventory/printable" />
         <Route element = {<MedForm/>} path="/add" />
         <Route element = {<MedUpdate/>} path="/formulary/:id" />
       </Routes>

@@ -39,7 +39,8 @@ module.exports = {
             .catch((err) => console.log(err))
     },
 
-    // UPDATE INVENTORY
+    // UPDATE INVENTORY 
+    // update or updateMany would require to loop through and do an axios call for each one
     updateInventory: (req, res) => {
         const { medications } = req.body;
 

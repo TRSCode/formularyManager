@@ -89,3 +89,7 @@ body {
     background-color: rgb(147, 143, 143);
     cursor: pointer;
 } */
+
+.smaller-text {
+    font-size: 0.8rem;
+}

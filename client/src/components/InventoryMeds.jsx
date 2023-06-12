@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const InventoryMeds = () => {
     const [medications, setMedications] = useState([]);
     const [inventoryAmounts, setInventoryAmounts] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios
@@ -61,6 +63,7 @@ const handleSubmit = (e) => {
         _id: medication._id,
         inventoryAmount: inventoryAmounts[medication.id] || '',
     }));
+    // console.log(updatedMedications);
 
     // Make an HTTP request to update the inventory in the backend
     const url = 'http://localhost:8000/api/formulary/updateInventory';
@@ -68,7 +71,9 @@ const handleSubmit = (e) => {
         .patch(url, { medications: updatedMedications })
         .then((response) => {
             // Handle successful response
-            console.log(response.data);
+            // console.log(response.data);
+            navigate('/formulary/inventory/printable');
+            // navigate('/formulary/inventory/printable', { state: { inventory: response.data.medications } });
         })
         .catch((error) => {
             // Handle error
