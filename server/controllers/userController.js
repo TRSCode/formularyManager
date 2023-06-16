@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 
 module.exports = {
     registerUser: async (req, res) => {
+        console.log('registerUser called with body:', req.body);
         try {
             // check if user already exists in db
             const potentialUser = await User.findOne({ email: req.body.email });
@@ -13,9 +14,11 @@ module.exports = {
             }else{
                 // create user
                 const newUser = await User.create(req.body);
+                console.log("new user created");
 
                 // generate a user token
-                const userToken = jwt.sign({_id: newUser._id, email:newUser}, secret,{expiresIn: '2h'});
+                const userToken = jwt.sign({_id: newUser._id, email:newUser.email}, secret,{expiresIn: '2h'});
+                console.log('token generated')
                 // Sending user data back to the client
                 res.status(201).cookie('userToken', userToken, {httpOnly:true, maxAge:2*60*60*1000}).json(newUser);
             }

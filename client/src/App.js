@@ -8,6 +8,8 @@ import Dashboard from './components/Dashboard';
 import MedUpdate from './components/MedUpdate';
 import InventoryMeds from './components/InventoryMeds';
 import PrintableView from './components/PrintableView';
+import Login from './components/user/Login';
+import Register from './components/user/Register';
 import "./styles.css"
 const App = () => {
 
@@ -15,7 +17,9 @@ const App = () => {
     <div>
       <Navbar />
       <Routes>
-        <Route element={<Navigate to="/dashboard" />} path="/" />
+        {/* <Route element={<Navigate to="/dashboard" />} path="/" /> */}
+        <Route element = {<Login/>} path = "/login" />
+        <Route element = {<Register/>} path = "/" />
         <Route element = {<Dashboard/>} path = "/dashboard" />
         <Route element = {<ViewAllMeds/>} path="/formulary" />
         <Route element = {<InventoryMeds/>} path="/formulary/inventory" />
