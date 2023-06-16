@@ -1,10 +1,15 @@
 const Formulary = require('../models/formulary.model');
+const jwt = require('jsonwebtoken');
+const secret = process.env.SECRET_KEY;
+// const User = require('../models/userModel');
 
 module.exports = {
     // CREATE MED
     createMed: (req, res) => {
-        console.log(req.body)
+        // console.log(req.body)
+        const user = jwt.verify(req.cookies.userToken, secret);
         Formulary.create(req.body)
+        // Formulary.create({ req.body, user: user._id })
             .then(newMed => res.json(newMed))
             .catch(err => res.status(400).json(err))
     },

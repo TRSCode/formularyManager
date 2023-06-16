@@ -46,7 +46,7 @@ const MedForm = (props) => {
             dispenseLevel,
             notes
             // expiration: formatDateForBackend(expiration)
-        })
+        }, {withCredentials:true})
             .then(res=>{
                 // console.log(res);
                 // console.log(res.data);

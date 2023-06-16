@@ -17,13 +17,14 @@ module.exports = {
                 console.log("new user created");
 
                 // generate a user token
+                console.log('secret:', secret);
                 const userToken = jwt.sign({_id: newUser._id, email:newUser.email}, secret,{expiresIn: '2h'});
                 console.log('token generated')
                 // Sending user data back to the client
                 res.status(201).cookie('userToken', userToken, {httpOnly:true, maxAge:2*60*60*1000}).json(newUser);
             }
         } catch (err) { 
-            res.status(400).json(err);
+            res.status(400).json({ errors: err.message });
         }
     },
     // login user controller
@@ -59,5 +60,15 @@ module.exports = {
     logoutUser: (req, res) => {
         res.clearCookie('userToken').json({message: 'You have successfully logged out'});
         res.sendStatus(200);
+    },
+    // get logged in user controller
+    getLogged: async (req, res) => {
+        try{
+            const user = jwt.verify(req.cookies.userToken, secret);
+            const currentUser = await User.findOne({_id: user._id});
+            res.json(currentUser);
+        } catch(err){
+            res.status(400).json({errors: 'failed to get logged in user'});
+        }
     }
 }

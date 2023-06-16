@@ -26,7 +26,7 @@ const MedUpdate = () => {
     const [successMessage, setSuccessMessage] = useState('');
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/formulary/${id}`)
+        axios.get(`http://localhost:8000/api/formulary/${id}`, {withCredentials:true})
         .then((res) => {
             console.log(res.data);
             setMedication(res.data.medication);

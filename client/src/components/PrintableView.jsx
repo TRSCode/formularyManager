@@ -10,7 +10,7 @@ const PrintableView = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:8000/api/formulary')
+            .get('http://localhost:8000/api/formulary', {withCredentials:true})
             .then((res) => {
                 setFormulary(res.data);
             })

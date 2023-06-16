@@ -9,7 +9,7 @@ const InventoryMeds = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:8000/api/formulary')
+            .get('http://localhost:8000/api/formulary', {withCredentials:true})
             .then((response) => {
                 // Group medications by location (acc = accumulator)
                 const groupedMedications = response.data.reduce((acc, medication) => {

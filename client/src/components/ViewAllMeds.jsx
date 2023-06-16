@@ -11,7 +11,7 @@ const ViewAllMeds = () => {
 
     useEffect(() => {
         axios
-            .get("http://localhost:8000/api/formulary")
+            .get("http://localhost:8000/api/formulary", {withCredentials:true})
             .then((res) => {
                 console.log(res.data);
                 setFormulary(res.data);
