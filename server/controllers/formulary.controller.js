@@ -1,7 +1,7 @@
 const Formulary = require('../models/formulary.model');
 const jwt = require('jsonwebtoken');
 const secret = process.env.SECRET_KEY;
-// const User = require('../models/userModel');
+const User = require('../models/userModel'); //not sure what to name this
 
 module.exports = {
     // CREATE MED
