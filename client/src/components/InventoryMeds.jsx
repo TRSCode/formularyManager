@@ -9,7 +9,7 @@ const InventoryMeds = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:8000/api/formulary', {withCredentials:true})
+            .get('http://localhost:8000/api/formulary', { withCredentials: true })
             .then((response) => {
                 // Group medications by location (acc = accumulator)
                 const groupedMedications = response.data.reduce((acc, medication) => {
@@ -50,81 +50,76 @@ const InventoryMeds = () => {
             ...prevInventoryAmounts,
             [medicationId]: value,
         }));
-        setMedications(medications.map((item)=>{return (item.id===medicationId) ? {...item, inventory:value} : item}))
+        setMedications((prevMedications) =>
+            prevMedications.map((item) => (item.id === medicationId ? { ...item, inventory: value } : item))
+        );
     };
-// -----------------------6th attempt-------------------------
 
-const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(medications);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(medications);
 
-    // Create an array of medications with their updated inventory amount
-    const updatedMedications = medications.map((medication) => ({
-        _id: medication._id,
-        inventoryAmount: inventoryAmounts[medication.id] || '',
-    }));
-    // console.log(updatedMedications);
+        // Create an array of medications with their updated inventory amount
+        const updatedMedications = medications.map((medication) => ({
+            _id: medication._id,
+            inventoryAmount: inventoryAmounts[medication.id] || '',
+        }));
 
-    // Make an HTTP request to update the inventory in the backend
-    const url = 'http://localhost:8000/api/formulary/updateInventory';
-    axios
-        .patch(url, { medications: updatedMedications })
-        .then((response) => {
-            // Handle successful response
-            // console.log(response.data);
-            navigate('/formulary/inventory/printable');
-            // navigate('/formulary/inventory/printable', { state: { inventory: response.data.medications } });
-        })
-        .catch((error) => {
-            // Handle error
-            console.error(error);
-        });
+        // Make an HTTP request to update the inventory in the backend
+        const url = 'http://localhost:8000/api/formulary/updateInventory';
+        axios
+            .patch(url, { medications: updatedMedications })
+            .then((response) => {
+                // Handle successful response
+                navigate('/formulary/inventory/printable');
+            })
+            .catch((error) => {
+                // Handle error
+                console.error(error);
+            });
 
-    // Clear the form fields after submission
-    setInventoryAmounts({});
-};
-
-// heck of a time figuring out how to update a field in multiple objects in an array of objects.  Attempted update, updateMany, finally bulkWrite
+        // Clear the form fields after submission
+        setInventoryAmounts({});
+    };
 
     return (
-        <form onSubmit={handleSubmit}>
-            {medications.map((medication) => (
-                <div className="row gap-x-20 ms-3 me-3" key={medication.id}>
-                    <div className="col-md-4">
-                        <p>
-                            <label className="form-label fw-bolder">{medication.storageLocation}</label>
-                        </p>
-                    </div>
-                    <div className="col-md-8">
-                        <div className="d-flex align-items-center">
-                            <p className="me-3">
-                                <label className="form-label fw-semibold">{medication.medication}</label>
-                                <label className="form-label ms-3">{medication.description}</label>
-                                <label className="form-label ms-3">{medication.unitType}</label>
-                                <label className="form-label ms-3">Lot #: {medication.lotNumber}</label>
-                                <label className="form-label ms-3">Exp: {medication.expiration}</label>
-                                <label className="form-label ms-3">QTY: {medication.onHand}</label>
+        <div className="container-fluid formBG">
+            <h1 className="text-center text-light mb-0">Inventory</h1>
+            <form onSubmit={handleSubmit} className="mt-5">
+                {medications.map((medication) => (
+                    <div className="row gap-x-20 ms-3 me-3" key={medication.id}>
+                        <div className="col-2 md-">
+                            <p>
+                                <label className="form-label fw-bolder text-light">{medication.storageLocation}</label>
                             </p>
-                            <input
-                                type="number"
-                                className="form-control"
-                                placeholder="Enter inventory amount"
-                                value={inventoryAmounts[medication.id] || ''}
-
-                                // onChange={(e) => setMedications(medications.map((item)=>{return (item.id===medication.id) ? {...item, inventory:e.target.value} : item}))}
-                                onChange={(e) => handleInventoryChange(medication.id, e)}
-
-                            />
+                        </div>
+                        <div className="col-md-10">
+                            <div className="d-flex align-items-center">
+                                <p className="me-3 col-8">
+                                    <label className="form-label fw-semibold text-light">{medication.medication}</label>
+                                    <label className="form-label ms-3 text-light">{medication.description}</label>
+                                    <label className="form-label ms-3 text-light">{medication.unitType}</label>
+                                    <label className="form-label ms-3 text-light">Lot #: {medication.lotNumber}</label>
+                                    <label className="form-label ms-3 text-light">Exp: {medication.expiration}</label>
+                                    <label className="form-label ms-3 text-light">QTY: {medication.onHand}</label>
+                                </p>
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    placeholder="Enter inventory amount"
+                                    value={inventoryAmounts[medication.id] || ''}
+                                    onChange={(e) => handleInventoryChange(medication.id, e)}
+                                />
+                            </div>
                         </div>
                     </div>
-                </div>
-            ))}
-            <button type="submit" className="btn btn-primary">
-                Submit
-            </button>
-        </form>
+                ))}
+                <button type="submit" className="btn btn-dark mt-3">
+                    Submit
+                </button>
+            </form>
+        </div>
     );
 };
 
 export default InventoryMeds;
-

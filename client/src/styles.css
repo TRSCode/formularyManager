@@ -59,6 +59,10 @@ body {
     background-color: #6dcdf7;
 }
 
+.dashHeader {
+    background-color: #c2dcf4;
+}
+
 .legend30 {
     background-color: #f8d7da;
 }
@@ -92,4 +96,11 @@ body {
 
 .smaller-text {
     font-size: 0.8rem;
+}
+
+.formBG {
+    background-color: #5d646b;
+}
+.submitBG {
+    background-color: #313234;
 }

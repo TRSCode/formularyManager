@@ -1,0 +1,17 @@
+- CANNOT SET HEADERS AFTER THEY ARE SENT TO THE CLIENT
+
+The error message you are seeing, "Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client," typically occurs when you try to send multiple responses to the client in a single request.
+
+In most cases, this error is caused by attempting to send a response after it has already been sent or when multiple responses are being sent within a single request. To fix this issue, you should ensure that you're only sending a single response to the client.
+
+Here are a few common scenarios that can lead to this error:
+
+Double response: If you're sending a response multiple times in your code, such as calling res.send() or res.json() multiple times, it will trigger this error. Make sure you have control flow in your code to prevent sending multiple responses.
+
+Middleware chain: If you have multiple middleware functions in your Express application, ensure that only one of them sends a response. If more than one middleware tries to send a response, it will cause the headers to be sent multiple times and trigger the error. Check if any middleware is sending a response before or after the intended point.
+
+Asynchronous operations: If you have asynchronous operations like callbacks or promises, ensure that you're handling the response correctly after the asynchronous operation completes. If the response is sent inside a callback or promise, check if there's any possibility of it being called multiple times.
+
+To identify the specific location in your code that is causing the issue, you can examine the stack trace provided in the error message. It will show you the sequence of function calls that led to the error. Look for any places where you are sending multiple responses or where responses may be sent unexpectedly.
+
+If you're still unable to resolve the issue, please provide the relevant portion of your code so that I can assist you further in finding and fixing the problem.

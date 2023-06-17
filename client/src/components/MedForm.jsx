@@ -75,7 +75,7 @@ const MedForm = (props) => {
     }
     
     return (
-        <form onSubmit={onSubmitHandler} className="form-control p-3 mb-2 bg-dark text-white col-9">
+        <form onSubmit={onSubmitHandler} className="form-control p-3 mb-2 formBG text-white col-9">
             <h2>Add A Medication</h2>
             {successMessage && <h3 className="text-success">{successMessage}</h3>}
             <div className="row gap-x-20">
@@ -244,7 +244,7 @@ const MedForm = (props) => {
                     </p>
                 </div>
             </div>
-            <input type="submit" className="btn btn-secondary mx-3"/>
+            <input type="submit" className="btn btn-dark mx-3"/>
         </form>
     )
 }

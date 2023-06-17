@@ -33,16 +33,16 @@ export default function Navbar() {
         <a href="/dashboard" className="site-title"><img src={logoMM} className="logoSize me-2" alt="Med Manager" />Med Manager</a>
         {(user && user.firstName) && <span className="site-title">Welcome {user.firstName}!</span>}
         <ul>
-            
-            <CustomLink href="/formulary">Formulary</CustomLink>
-            <CustomLink href="/formulary/inventory">Inventory</CustomLink>
-            <CustomLink href="/add">Add Med</CustomLink>
-            <CustomLink href="/dashboard">Home</CustomLink>
-            {(user && user.firstName) ? 
+        {user && user.firstName && (
+            <>
+                <CustomLink href="/formulary">Formulary</CustomLink>
+                <CustomLink href="/formulary/inventory">Inventory</CustomLink>
+                <CustomLink href="/add">Add Med</CustomLink>
+                <CustomLink href="/dashboard">Home</CustomLink>
                 <li><a href="" onClick={handleLogout}>Logout</a></li>
-                : 
-                <CustomLink href="/login">Login</CustomLink>
-            }
+            </>
+        )}
+        {(!user || !user.firstName) && <CustomLink href="/login">Login</CustomLink>}
         </ul>
     </nav>
 }

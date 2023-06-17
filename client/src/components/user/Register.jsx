@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 
 const Register = (props) => {
     const navigate = useNavigate();
-    const [user,setUser] = useState({
+    const [user, setUser] = useState({
         firstName: "",
         lastName: "",
         email: "",
@@ -13,13 +13,12 @@ const Register = (props) => {
     });
 
     const changeHandler = (e) => {
-        setUser({...user, [e.target.name]: e.target.value});
+        setUser({ ...user, [e.target.name]: e.target.value });
     }
 
-    // submitHandler
     const submitHandler = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8000/api/register", user, {withCredentials: true})
+        axios.post("http://localhost:8000/api/register", user, { withCredentials: true })
             .then((res) => {
                 console.log(res);
                 navigate("/dashboard");
@@ -27,36 +26,47 @@ const Register = (props) => {
             .catch((err) => {
                 console.log(err);
             })
-        }
-
+    }
 
     return (
-        <div>
-            <form onSubmit={submitHandler}>
-                <div>
-                    <label>First Name: </label>
-                    <input type="text" name="firstName" onChange={changeHandler} value={user.firstName}/>
-                </div>
-                <div>
-                    <label>Last Name: </label>
-                    <input type="text" name="lastName" onChange={changeHandler} value={user.lastName}/>
-                </div>
-                <div>
-                    <label>Email: </label>
-                    <input type="text" name="email" onChange={changeHandler} value={user.email}/>
-                </div>
-                <div>
-                    <label>Password: </label>
-                    <input type="password" name="password" onChange={changeHandler} value={user.password}/>
-                </div>
-                <div>
-                    <label>Confirm Password: </label>
-                    <input type="password" name="confirmPassword" onChange={changeHandler} value={user.confirmPassword}/>
-                </div>
-                <button type="submit">Register</button>
-            </form>
-            <Link to="/login">Already have an account?</Link>
-        </div>
-    )};
+        <div className="container-fluid formBG pb-3">
+            <div className="row justify-content-center">
+                <div className="col-md-6 mt-5">
+                <h2 className="text-light mb-4">Register</h2>
+                    <form onSubmit={submitHandler}>
+                        <div className="form-group">
+                            <label className="text-light">First Name:</label>
+                            <input type="text" className="form-control" name="firstName" onChange={changeHandler} value={user.firstName} />
+                        </div>
 
-    export default Register;
+                        <div className="form-group">
+                            <label className="text-light">Last Name:</label>
+                            <input type="text" className="form-control" name="lastName" onChange={changeHandler} value={user.lastName} />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="text-light">Email:</label>
+                            <input type="text" className="form-control" name="email" onChange={changeHandler} value={user.email} />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="text-light">Password:</label>
+                            <input type="password" className="form-control" name="password" onChange={changeHandler} value={user.password} />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="text-light">Confirm Password:</label>
+                            <input type="password" className="form-control" name="confirmPassword" onChange={changeHandler} value={user.confirmPassword} />
+                        </div>
+
+                        <button type="submit" className="btn btn-dark">Register</button>
+                    </form>
+
+                    <Link to="/login" className="text-light mt-3">Already have an account?</Link>
+                </div>
+            </div>
+        </div>
+    )
+};
+
+export default Register;
