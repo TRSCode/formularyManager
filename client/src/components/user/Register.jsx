@@ -4,7 +4,9 @@ import { useNavigate, Link } from 'react-router-dom';
 
 const Register = (props) => {
     const navigate = useNavigate();
-    const [user, setUser] = useState({
+    const { setIsLogged } = props;
+    const {user, setUser} = props;
+    const [ruser, setRuser] = useState({
         firstName: "",
         lastName: "",
         email: "",
@@ -13,18 +15,21 @@ const Register = (props) => {
     });
 
     const changeHandler = (e) => {
-        setUser({ ...user, [e.target.name]: e.target.value });
+        setRuser({ ...ruser, [e.target.name]: e.target.value });
     }
 
     const submitHandler = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8000/api/register", user, { withCredentials: true })
+        axios.post("http://localhost:8000/api/register", ruser, { withCredentials: true })
             .then((res) => {
-                console.log(res);
+                console.log(res.data);
+                setUser(res.data);
+                setIsLogged(true);
                 navigate("/dashboard");
             })
             .catch((err) => {
                 console.log(err);
+                setIsLogged(false);
             })
     }
 
@@ -36,27 +41,27 @@ const Register = (props) => {
                     <form onSubmit={submitHandler}>
                         <div className="form-group">
                             <label className="text-light">First Name:</label>
-                            <input type="text" className="form-control" name="firstName" onChange={changeHandler} value={user.firstName} />
+                            <input type="text" className="form-control" name="firstName" onChange={changeHandler} value={ruser.firstName} />
                         </div>
 
                         <div className="form-group">
                             <label className="text-light">Last Name:</label>
-                            <input type="text" className="form-control" name="lastName" onChange={changeHandler} value={user.lastName} />
+                            <input type="text" className="form-control" name="lastName" onChange={changeHandler} value={ruser.lastName} />
                         </div>
 
                         <div className="form-group">
                             <label className="text-light">Email:</label>
-                            <input type="text" className="form-control" name="email" onChange={changeHandler} value={user.email} />
+                            <input type="text" className="form-control" name="email" onChange={changeHandler} value={ruser.email} />
                         </div>
 
                         <div className="form-group">
                             <label className="text-light">Password:</label>
-                            <input type="password" className="form-control" name="password" onChange={changeHandler} value={user.password} />
+                            <input type="password" className="form-control" name="password" onChange={changeHandler} value={ruser.password} />
                         </div>
 
                         <div className="form-group">
                             <label className="text-light">Confirm Password:</label>
-                            <input type="password" className="form-control" name="confirmPassword" onChange={changeHandler} value={user.confirmPassword} />
+                            <input type="password" className="form-control" name="confirmPassword" onChange={changeHandler} value={ruser.confirmPassword} />
                         </div>
 
                         <button type="submit" className="btn btn-dark">Register</button>

@@ -58,8 +58,7 @@ module.exports = {
     },
     // logout user controller
     logoutUser: (req, res) => {
-        res.clearCookie('userToken').json({message: 'You have successfully logged out'});
-        res.sendStatus(200);
+        res.clearCookie('userToken').json({message: 'You have successfully logged out'}).sendStatus(200);
     },
     // get logged in user controller
     getLogged: async (req, res) => {

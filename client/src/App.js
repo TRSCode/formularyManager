@@ -12,17 +12,19 @@ import Login from './components/user/Login';
 import Register from './components/user/Register';
 import "./styles.css"
 const App = () => {
+  const [user, setUser] = useState(null);
+  const [isLogged, setIsLogged] = useState(null);
 
   return (
     <div>
-      <Navbar />
+      <Navbar user={user} setUser={setUser} isLogged={isLogged} setIsLogged={setIsLogged}/>
       <Routes>
         {/* <Route element={<Navigate to="/dashboard" />} path="/" /> */}
-        <Route element = {<Login/>} path = "/login" />
-        <Route element = {<Register/>} path = "/" />
+        <Route element = {<Login setUser={setUser} setIsLogged={setIsLogged}/>} path = "/login" />
+        <Route element = {<Register setUser={setUser} setIsLogged={setIsLogged} />} path = "/" />
         <Route element = {<Dashboard/>} path = "/dashboard" />
-        <Route element = {<ViewAllMeds/>} path="/formulary" />
-        <Route element = {<InventoryMeds/>} path="/formulary/inventory" />
+        <Route element = {<ViewAllMeds isLogged={isLogged}/>} path="/formulary" />
+        <Route element = {<InventoryMeds isLogged={isLogged}/>} path="/formulary/inventory" />
         <Route element = {<PrintableView/>} path="/formulary/inventory/printable" />
         <Route element = {<MedForm/>} path="/add" />
         <Route element = {<MedUpdate/>} path="/formulary/:id" />

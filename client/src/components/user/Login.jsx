@@ -4,6 +4,8 @@ import { useNavigate, Link } from 'react-router-dom';
 
 const Login = (props) => {
     const navigate = useNavigate();
+    const { setUser } = props;
+    const { setIsLogged } = props;
     const [userLogin, setUserLogin] = useState({
         email: "",
         password: ""
@@ -17,10 +19,13 @@ const Login = (props) => {
         e.preventDefault();
         axios.post("http://localhost:8000/api/login", userLogin, { withCredentials: true })
             .then((res) => {
-                console.log(res);
+                console.log("login",res.data);
+                setIsLogged(true);
+                setUser(res.data)
                 navigate("/dashboard");
             })
             .catch((err) => {
+                setIsLogged(false);
                 console.log(err);
             })
     }

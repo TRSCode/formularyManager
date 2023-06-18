@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const ViewAllMeds = () => {
+const ViewAllMeds = ({isLogged}) => {
     const [formulary, setFormulary] = useState([]);
     const [sortedFormulary, setSortedFormulary] = useState([...formulary].sort((a, b) => a.medication.localeCompare(b.medication)));
     const [isSorted, setIsSorted] = useState(false);
     const [selectedMedication, setSelectedMedication] = useState(null);
-
+    const navigate = useNavigate();
 
     useEffect(() => {
+        // if (!isLogged) {
+        //     navigate('/login');
+        // }
         axios
             .get("http://localhost:8000/api/formulary", {withCredentials:true})
             .then((res) => {
@@ -130,10 +133,10 @@ const ViewAllMeds = () => {
         setIsSorted(true);
     };
 
-    const handleRestore = () => {
-        setSortedFormulary([...formulary].sort((a, b) => a.medication.localeCompare(b.medication)));
-        setIsSorted(false);
-    };
+    // const handleRestore = () => {
+    //     setSortedFormulary([...formulary].sort((a, b) => a.medication.localeCompare(b.medication)));
+    //     setIsSorted(false);
+    // };
 
     const deleteMedication = (id) => {
         const confirmDelete = window.confirm("Are you sure you want to delete this medication?");

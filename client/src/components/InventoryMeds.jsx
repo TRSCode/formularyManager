@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const InventoryMeds = () => {
+const InventoryMeds = (isLogged) => {
     const [medications, setMedications] = useState([]);
     const [inventoryAmounts, setInventoryAmounts] = useState({});
     const navigate = useNavigate();
 
     useEffect(() => {
+        if (!isLogged) {
+            navigate('/login');
+        }
         axios
             .get('http://localhost:8000/api/formulary', { withCredentials: true })
             .then((response) => {

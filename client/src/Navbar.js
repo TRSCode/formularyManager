@@ -3,20 +3,24 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import logoMM from './logoMM.png';
 
-export default function Navbar() {
-    const [user, setUser] = useState({});
+export default function Navbar({ user, setUser, isLogged, setIsLogged}) {
+    // const [user, setUser] = useState({});
+    // const [isLogged, setIsLogged] = useState(false);
     // Fetch the current user from your API.
     useEffect(() => {
         axios
             .get(`http://localhost:8000/api/user-current`, { withCredentials: true })
             .then(res => {
+                console.log(res.data)
+                setIsLogged(true)
                 setUser(res.data);
             })
             .catch(err => {
                 console.log("current user error: " + err)
                 setUser({})
+                setIsLogged(false)
         });
-    }, []);
+    }, [isLogged]);
 
     const handleLogout = (e) => {
         e.preventDefault();
@@ -24,6 +28,7 @@ export default function Navbar() {
             .post('http://localhost:8000/api/logout', {}, { withCredentials: true })
             .then(res => {
                 setUser(null);
+                setIsLogged(false);
                 window.location.href = '/login'
             })
             .catch(err => console.log("logout error: " + err));
@@ -31,7 +36,7 @@ export default function Navbar() {
     
     return <nav className="nav">
         <a href="/dashboard" className="site-title"><img src={logoMM} className="logoSize me-2" alt="Med Manager" />Med Manager</a>
-        {(user && user.firstName) && <span className="site-title">Welcome {user.firstName}!</span>}
+        {(isLogged) && <span className="site-title">Welcome {user?.firstName}!</span>}
         <ul>
         {user && user.firstName && (
             <>
