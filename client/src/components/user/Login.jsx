@@ -10,6 +10,7 @@ const Login = (props) => {
         email: "",
         password: ""
     })
+    const [errors, setErrors] = useState('')
 
     const changeHandler = (e) => {
         setUserLogin({ ...userLogin, [e.target.name]: e.target.value })
@@ -26,7 +27,8 @@ const Login = (props) => {
             })
             .catch((err) => {
                 setIsLogged(false);
-                console.log(err);
+                setErrors(err.response.data.errors);
+                console.log(err.response.data.errors);
             })
     }
 
@@ -37,6 +39,8 @@ const Login = (props) => {
                     <h2 className="text-light mb-4">Login</h2>
                     <form onSubmit={loginHandler}>
                         <div className="form-group">
+                            {errors? 
+                            <p className="bg-warning text-secondary">Invalid Login Attempt</p>:""}
                             <label className="text-light">Email:</label>
                             <input type="text" className="form-control" name="email" onChange={changeHandler} value={userLogin.email} />
                         </div>

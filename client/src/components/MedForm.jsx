@@ -77,13 +77,13 @@ const MedForm = (props) => {
     return (
         <form onSubmit={onSubmitHandler} className="form-control p-3 formBG text-white col-9">
             <h2>Add A Medication</h2>
-            {successMessage && <h3 className="text-success">{successMessage}</h3>}
+            {successMessage && <h3 className="text-info">{successMessage}</h3>}
             <div className="row gap-x-20">
                 <div className="col-md">
                     <p>
                         <label className="form-label">*Name:  </label>
                         {errors.medication ? 
-                        <p className="bg-danger text-warning">{errors.medication.message}</p>:""}
+                        <p className="bg-warning text-secondary">{errors.medication.message}</p>:""}
                         <input type="text" className="form-control" value={medication} placeholder="generic/trade name (generic preferred)" onChange = {(e)=>setMedication(e.target.value)}/>
                     </p>
                 </div>
@@ -91,7 +91,7 @@ const MedForm = (props) => {
                     <p>
                         <label className="form-label">*Description: </label>
                         {errors.description ? 
-                        <p className="bg-danger text-warning">{errors.description.message}</p>:""}
+                        <p className="bg-warning text-secondary">{errors.description.message}</p>:""}
                         <input type="text" className="form-control" value={description} placeholder="Strength/ Route/ QTY per container" onChange = {(e)=>setDescription(e.target.value)}/>
                     </p>
                 </div>
@@ -99,7 +99,7 @@ const MedForm = (props) => {
                     <p>
                         <label className="form-label">*Unit Type:</label>
                         {errors.unitType ? 
-                        <p className="bg-danger text-warning">{errors.unitType.message}</p>:""}
+                        <p className="bg-warning text-secondary">{errors.unitType.message}</p>:""}
                         <select className="form-control" value={unitType} onChange={(e) => setUnitType(e.target.value)}>
                             <option value="">Select a Unit Type</option>
                             <option value="EA">EA</option>
@@ -118,7 +118,7 @@ const MedForm = (props) => {
                     <p>
                         <label className="form-label">*Cost per unit:  </label>
                         {errors.unitCost ? 
-                        <p className="bg-danger text-warning">{errors.unitCost.message}</p>:""}
+                        <p className="bg-warning text-secondary">{errors.unitCost.message}</p>:""}
                         <input type="text" className="form-control" value={unitCost} placeholder="cost per unit" onChange = {(e)=>setUnitCost(e.target.value)}/>
                     </p>
                 </div>
@@ -126,7 +126,7 @@ const MedForm = (props) => {
                     <p>
                         <label className="form-label">*Authorized Quantity:  </label>
                         {errors.authorizedAmount ? 
-                        <p className="bg-danger text-warning">{errors.authorizedAmount.message}</p>:""}
+                        <p className="bg-warning text-secondary">{errors.authorizedAmount.message}</p>:""}
                         <input type="text" className="form-control" value={authorizedAmount} placeholder="authorized quantity" onChange = {(e)=>setAuthorizedAmount(e.target.value)}/>
                     </p>
                 </div>
@@ -134,7 +134,7 @@ const MedForm = (props) => {
                     <p>
                         <label className="form-label">*Quantity:  </label>
                         {errors.onHand ? 
-                        <p className="bg-danger text-warning">{errors.onHand.message}</p>:""}
+                        <p className="bg-warning text-secondary">{errors.onHand.message}</p>:""}
                         <input type="text" className="form-control" value={onHand} placeholder="quantity on hand" onChange = {(e)=>setOnHand(e.target.value)}/>
                     </p>
                 </div>
@@ -144,7 +144,7 @@ const MedForm = (props) => {
                     <p>
                         <label className="form-label">*Lot Number:</label>
                         {errors.lotNumber ? 
-                        <p className="bg-danger text-warning">{errors.lotNumber.message}</p>:""}
+                        <p className="bg-warning text-secondary">{errors.lotNumber.message}</p>:""}
                         <input type="text" className="form-control" value={lotNumber} onChange = {(e)=>setLotNumber(e.target.value)}/>
                     </p>
                 </div>
@@ -152,7 +152,7 @@ const MedForm = (props) => {
                     <p>
                         <label className="form-label">*Expiration:</label>
                         {errors.expiration ? 
-                        <p className="bg-danger text-warning">{errors.expiration.message}</p>:""}
+                        <p className="bg-warning text-secondary">{errors.expiration.message}</p>:""}
                         <input type="date" className="form-control" value={expiration} onChange = {(e)=>{console.log(e.target.value); setExpiration(e.target.value)}}/>
                     </p>
                 </div>
@@ -160,7 +160,7 @@ const MedForm = (props) => {
                     <p>
                         <label className="form-label">*NSN:</label>
                         {errors.nsn ? 
-                        <p className="bg-danger text-warning">{errors.nsn.message}</p>:""}
+                        <p className="bg-warning text-secondary">{errors.nsn.message}</p>:""}
                         <input type="text" className="form-control" placeholder="NSN" value={nsn} onChange = {(e)=>setNsn(e.target.value)}/>
                     </p>
                 </div>
@@ -168,7 +168,7 @@ const MedForm = (props) => {
                     <p>
                         <label className="form-label">NDC:</label>
                         {errors.ndc ? 
-                        <p className="bg-danger text-warning">{errors.ndc.message}</p>:""}
+                        <p className="bg-warning text-secondary">{errors.ndc.message}</p>:""}
                         <input type="text" className="form-control" placeholder="NDC" value={ndc} onChange = {(e)=>setNdc(e.target.value)}/>
                     </p>
                 </div>
@@ -176,7 +176,7 @@ const MedForm = (props) => {
                     <p>
                         <label className="form-label">Supplier:</label>
                         {errors.supplier ? 
-                        <p className="bg-danger text-warning">{errors.supplier.message}</p>:""}
+                        <p className="bg-warning text-secondary">{errors.supplier.message}</p>:""}
                         <input type="text" className="form-control" placeholder="Supplier" value={supplier} onChange = {(e)=>setSupplier(e.target.value)}/>
                     </p>
                 </div>
@@ -186,7 +186,7 @@ const MedForm = (props) => {
                     <p>
                         <label className="form-label">*CIIC:</label>
                         {errors.ciic ? 
-                        <p className="bg-danger text-warning">{errors.ciic.message}</p>:""}
+                        <p className="bg-warning text-secondary">{errors.ciic.message}</p>:""}
                         <select className="form-control" value={ciic} onChange={(e) => setCiic(e.target.value)}>
                             <option value="">Select a Category</option>
                             <option value="Q">Q</option>
@@ -201,7 +201,7 @@ const MedForm = (props) => {
                     <p>
                         <label className="form-label">*Dispense Level:</label>
                         {errors.dispenseLevel ? 
-                        <p className="bg-danger text-warning">{errors.dispenseLevel.message}</p>:""}
+                        <p className="bg-warning text-secondary">{errors.dispenseLevel.message}</p>:""}
                         <select className="form-control" value={dispenseLevel} onChange={(e) => setDispenseLevel(e.target.value)}>
                             <option value="">Select a Category</option>
                             <option value="Prescriber">Prescriber</option>
@@ -214,7 +214,7 @@ const MedForm = (props) => {
                     <p>
                         <label className="form-label">*Location:</label>
                         {errors.storageLocation ? 
-                        <p className="bg-danger text-warning">{errors.storageLocation.message}</p>:""}
+                        <p className="bg-warning text-secondary">{errors.storageLocation.message}</p>:""}
                         <select className="form-control" value={storageLocation} onChange={(e) => setStorageLocation(e.target.value)}>
                             <option value="">Select a storage location</option>
                             <option value="Locker">Locker</option>
@@ -239,7 +239,7 @@ const MedForm = (props) => {
                     <p>
                         <label className="form-label">Notes:</label>
                         {errors.notes ? 
-                        <p className="bg-danger text-warning">{errors.notes.message}</p>:""}
+                        <p className="bg-warning text-secondary">{errors.notes.message}</p>:""}
                         <input type="text" className="form-control" placeholder="Notes and Actions" value={notes} onChange = {(e)=>setNotes(e.target.value)}/>
                     </p>
                 </div>

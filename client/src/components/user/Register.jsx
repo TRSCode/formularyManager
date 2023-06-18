@@ -14,10 +14,11 @@ const Register = (props) => {
         confirmPassword: ""
     });
 
+    const [errors, setErrors] = useState('')
+
     const changeHandler = (e) => {
         setRuser({ ...ruser, [e.target.name]: e.target.value });
     }
-
     const submitHandler = (e) => {
         e.preventDefault();
         axios.post("http://localhost:8000/api/register", ruser, { withCredentials: true })
@@ -30,6 +31,7 @@ const Register = (props) => {
             .catch((err) => {
                 console.log(err);
                 setIsLogged(false);
+                setErrors(err.response.data.errors);
             })
     }
 
@@ -40,6 +42,8 @@ const Register = (props) => {
                 <h2 className="text-light mb-4">Register</h2>
                     <form onSubmit={submitHandler}>
                         <div className="form-group">
+                        {errors? 
+                            <p className="bg-warning text-secondary">Invalid Login Attempt</p>:""}
                             <label className="text-light">First Name:</label>
                             <input type="text" className="form-control" name="firstName" onChange={changeHandler} value={ruser.firstName} />
                         </div>

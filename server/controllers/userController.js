@@ -10,7 +10,7 @@ module.exports = {
             // check if user already exists in db
             const potentialUser = await User.findOne({ email: req.body.email });
             if (potentialUser) {
-                res.status(400).json({message: 'User already exists'})
+                res.status(400).json({errors: 'User already exists'})
             }else{
                 // create user
                 const newUser = await User.create(req.body);
@@ -24,7 +24,8 @@ module.exports = {
                 res.status(201).cookie('userToken', userToken, {httpOnly:true, maxAge:2*60*60*1000}).json(newUser);
             }
         } catch (err) { 
-            res.status(400).json({ errors: err.message });
+            res.status(400).json(err);
+            // res.status(400).json({ errors: err.message });
         }
     },
     // login user controller
@@ -44,12 +45,12 @@ module.exports = {
                 }
                 else{
                     // if the password doesn't match and email exists
-                    res.status(400).json({message: 'Invalid login attempt'});
+                    res.status(400).json({errors: 'Invalid login attempt'});
                 }
             }
             // if the User doesn't exist
             else{
-                res.status(400).json({message: 'Invalid login attempt'});
+                res.status(400).json({errors: 'Invalid login attempt'});
             }
         }
         catch(err){
@@ -58,7 +59,7 @@ module.exports = {
     },
     // logout user controller
     logoutUser: (req, res) => {
-        res.clearCookie('userToken').json({message: 'You have successfully logged out'}).sendStatus(200);
+        res.clearCookie('userToken').json({errors: 'You have successfully logged out'}).sendStatus(200);
     },
     // get logged in user controller
     getLogged: async (req, res) => {

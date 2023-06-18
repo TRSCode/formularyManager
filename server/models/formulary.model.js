@@ -25,9 +25,9 @@ const FormularySchema = new mongoose.Schema({
     },
     authorizedAmount: { 
         type: Number,
-        required: [true, "Quantity Authorized is required"],
-        minlength: [1, "Quantity Authorized must contain a number"],
-        maxlength: [10, "Quantity Authorized cannot exceed 10 numbers"]
+        required: [true, "QTY Authorized is required"],
+        minlength: [1, "QTY Authorized must contain a number"],
+        maxlength: [10, "QTY Authorized cannot exceed 10 numbers"]
     },
     onHand: { 
         type: Number,
