@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const InventoryMeds = (isLogged) => {
+const InventoryMeds = (props) => {
+    const { isLogged, user, setUser, setIsLogged } = props;
+    // const [isLogged, setIsLogged] = useState(); // [1
     const [medications, setMedications] = useState([]);
     const [inventoryAmounts, setInventoryAmounts] = useState({});
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!isLogged) {
-            navigate('/login');
-        }
+
         axios
             .get('http://localhost:8000/api/formulary', { withCredentials: true })
             .then((response) => {
@@ -45,7 +45,11 @@ const InventoryMeds = (isLogged) => {
             .catch((error) => {
                 console.error(error);
             });
-    }, []);
+            console.log("Inventory logged",isLogged);
+        // if (!user) {
+        //     navigate('/login');
+        // }
+    }, [setIsLogged]);
 
     const handleInventoryChange = (medicationId, e) => {
         const { value } = e.target;

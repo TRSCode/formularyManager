@@ -23,7 +23,7 @@ const ViewAllMeds = ({isLogged}) => {
             .catch((err) => {
                 console.log(err);
             });
-    }, []);
+    }, [isLogged, navigate]);
 
     const isExpiringSoon = (expiration, days) => {
         const expirationDate = new Date(expiration);

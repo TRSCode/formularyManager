@@ -17,8 +17,8 @@ export default function Navbar({ user, setUser, isLogged, setIsLogged}) {
             })
             .catch(err => {
                 console.log("current user error: " + err)
-                setUser({})
-                setIsLogged(false)
+                // setUser({})
+                // setIsLogged(false)
         });
     }, [isLogged]);
 
