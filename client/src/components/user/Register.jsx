@@ -43,7 +43,7 @@ const Register = (props) => {
                     <form onSubmit={submitHandler}>
                         <div className="form-group">
                         {errors? 
-                            <p className="bg-warning text-secondary">Invalid Login Attempt</p>:""}
+                            <p className="bg-warning text-secondary">Invalid Registration Attempt</p>:""}
                             <label className="text-light">First Name:</label>
                             <input type="text" className="form-control" name="firstName" onChange={changeHandler} value={ruser.firstName} />
                         </div>
