@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import axios from 'axios';
-import {Routes, Route, Navigate} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import MedForm from './components/MedForm';
 import ViewAllMeds from './components/ViewAllMeds'
 import Navbar from "./Navbar"
@@ -10,7 +10,7 @@ import InventoryMeds from './components/InventoryMeds';
 import PrintableView from './components/PrintableView';
 import Login from './components/user/Login';
 import Register from './components/user/Register';
-import ProtectedRoute from './components/ProtectedRoute';
+// import ProtectedRoute from './components/ProtectedRoutes';
 import "./styles.css"
 const App = () => {
   const [user, setUser] = useState(null);
@@ -20,11 +20,11 @@ const App = () => {
     <div>
       <Navbar user={user} setUser={setUser} isLogged={isLogged} setIsLogged={setIsLogged}/>
       <Routes>
-        {/* <ProtectedRoute element={<ViewAllMeds isLogged={isLogged}/>} path="/formulary" isLogged={isLogged} /> */}
         {/* <Route element={<Navigate to="/dashboard" />} path="/" /> */}
         <Route element = {<Login setUser={setUser} setIsLogged={setIsLogged}/>} path = "/login" />
         <Route element = {<Register setUser={setUser} setIsLogged={setIsLogged} />} path = "/" />
         <Route element = {<Dashboard/>} path = "/dashboard" />
+        {/* <ProtectedRoute element={<ViewAllMeds isLogged={isLogged}/>} path="/formulary" isLogged={isLogged} /> */}
         {/* <Route path="/formulary/*">
           <ProtectedRoute isLogged={isLogged}>
             <Route index element={<ViewAllMeds isLogged={isLogged}/>}/>
@@ -32,8 +32,7 @@ const App = () => {
             <Route path="/inventory/printable" element={<PrintableView/>} />
           </ProtectedRoute>
         </Route> */}
-        <Route element = {<ViewAllMeds isLogged={isLogged}/>} 
-        path="/formulary" />
+        <Route element = {<ViewAllMeds isLogged={isLogged}/>} path="/formulary" />
         <Route element = {<InventoryMeds isLogged={isLogged}/>} path="/formulary/inventory" />
         <Route element = {<PrintableView/>} path="/formulary/inventory/printable" />
         <Route element = {<MedForm/>} path="/add" />

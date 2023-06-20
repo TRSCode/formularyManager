@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ({isLogged, ...props}) => {
+const ProtectedRoutes = ({isLogged, ...props}) => {
     if(isLogged) {
         return <Route {...props} />;
     } else {
@@ -9,4 +9,4 @@ const ProtectedRoute = ({isLogged, ...props}) => {
     }
 }
 
-export default ProtectedRoute;
+export default ProtectedRoutes;
