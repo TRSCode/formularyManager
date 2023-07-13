@@ -17,7 +17,7 @@ module.exports = {
                 console.log("new user created");
 
                 // generate a user token
-                console.log('secret:', secret);
+                // console.log('secret:', secret);
                 const userToken = jwt.sign({_id: newUser._id, email:newUser.email}, secret,{expiresIn: '2h'});
                 console.log('token generated')
                 // Sending user data back to the client

@@ -52,7 +52,7 @@ const Login = (props) => {
 
                         <button type="submit" className="btn btn-dark">Login</button>
                         <br />
-                        <Link to="/" className="text-light">Don't have an account?</Link>
+                        <Link to="/register" className="text-light">Don't have an account?</Link>
                     </form>
                 </div>
             </div>
