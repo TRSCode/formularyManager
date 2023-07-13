@@ -90,7 +90,7 @@ export default function Dashboard() {
                         </div>
                         <div className="card-body">
                             <ul className="list-unstyled" style={{ paddingLeft: '0', textAlign: 'left' }}>
-                                <li>✅ <a href="https://share.balsamiq.com/c/3Yqk3JmJ2fAgsPf2rBaH7S.png">Build Wire-frame</a></li>
+                                <li>✅ Build Wire-frame</li>
                                 <li>✅ Basic CRUD</li>
                                 <li>✅ Basic UI</li>
                                 <li>✅ Display oneMed as an Alert message</li>

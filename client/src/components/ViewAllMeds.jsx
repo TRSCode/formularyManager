@@ -10,9 +10,11 @@ const ViewAllMeds = ({isLogged}) => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        // HERE IS WHERE WE CHECK IF THE USER IS LOGGED IN
         // if (!isLogged) {
         //     navigate('/login');
         // }
+        // HERE IS WHERE WE CHECK IF THE USER IS LOGGED IN
         axios
             .get("http://localhost:8000/api/formulary", {withCredentials:true})
             .then((res) => {

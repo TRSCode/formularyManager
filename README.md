@@ -1,6 +1,5 @@
 # Formulary Manager
 ## Full-Stack MERN application
-Wire-frame: https://share.balsamiq.com/c/3Yqk3JmJ2fAgsPf2rBaH7S.png
 
 Tools Used:
 * React, JavaScript, Express, Mongoose, Axios, Cors, Node.js, Bootstrap

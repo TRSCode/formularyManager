@@ -1,7 +1,11 @@
-import React, { useEffect } from 'react';
-import { Outlet, Navigate } from 'react-router-dom';
+// import React, { useEffect } from 'react';
+// import { Outlet, Navigate } from 'react-router-dom';
 
 
+
+
+
+// --------------------------test vvv--------------------------------
 // const ProtectedRoutes = ({isLogged}) => {
 //     // let isLogged = null;
 //     return(
@@ -13,19 +17,46 @@ import { Outlet, Navigate } from 'react-router-dom';
 //     //     return <Navigate to="/login" replace />;
 //     // }
 // }
+// --------------------------test ^^^--------------------------------
 
-const PrivateRoutes = ({ isLogged, user }) => {
-    useEffect(() => {
-        console.log("is this logged",user);}, [isLogged]);
+
+
+
+// const PrivateRoutes = ({ isLogged, user }) => {
+//     useEffect(() => {
+//         console.log("is this logged",user);}, [isLogged]);
+//     return (
+//         <>
+//             {isLogged ? (
+//                 <Outlet isLogged={isLogged} /> 
+//             ) : (
+//                 <Navigate to="/login" />
+//             )}
+//         </>
+//     );
+// };
+
+// export default PrivateRoutes;
+
+
+// --------------------------------------------------------2--------------------------------------------------------
+
+
+
+import React from 'react';
+import { Route, Navigate } from 'react-router-dom';
+
+export function PrivateRoutes({ element: Element, isLogged, ...rest }) {
     return (
-        <>
-            {isLogged ? (
-                <Outlet isLogged={isLogged} /> 
+        <Route
+            {...rest}
+            element={isLogged ? (
+                <Element />
             ) : (
-                <Navigate to="/login" />
+                <Navigate to="/login" replace />
             )}
-        </>
+        />
     );
-};
+}
 
-export default PrivateRoutes;
+
