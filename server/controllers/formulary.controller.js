@@ -9,7 +9,7 @@ module.exports = {
         // console.log(req.body)
         const user = jwt.verify(req.cookies.userToken, secret);
         Formulary.create(req.body)
-        // Formulary.create({ req.body, user: user._id })
+            // Formulary.create({ req.body, user: user._id })
             .then(newMed => res.json(newMed))
             .catch(err => res.status(400).json(err))
     },
@@ -44,8 +44,36 @@ module.exports = {
             .catch((err) => console.log(err))
     },
 
+    // // UPDATE INVENTORY 
+    // // update or updateMany would require to loop through and do an axios call for each one
+    // updateInventory: (req, res) => {
+    //     const { medications } = req.body;
+
+    //     // Create an array to hold the bulk update operations
+    //     const bulkUpdateOperations = [];
+
+    //     // Iterate through the medications array and create the update operation for each document
+    //     medications.forEach((medication) => {
+    //         const updateOperation = {
+    //             updateOne: {
+    //                 filter: { _id: medication._id },
+    //                 update: { $set: { inventoryAmount: medication.inventoryAmount || '' } }
+    //             }
+    //         };
+
+    //         bulkUpdateOperations.push(updateOperation);
+    //     });
+
+    //     // Execute the bulk update operations
+    //     Formulary.bulkWrite(bulkUpdateOperations)
+    //         .then((result) => {
+    //             res.json({ updatedCount: result.modifiedCount });
+    //         })
+    //         .catch((err) => {
+    //             res.status(400).json(err);
+    //         });
+    // },
     // UPDATE INVENTORY 
-    // update or updateMany would require to loop through and do an axios call for each one
     updateInventory: (req, res) => {
         const { medications } = req.body;
 
@@ -57,8 +85,13 @@ module.exports = {
             const updateOperation = {
                 updateOne: {
                     filter: { _id: medication._id },
-                    update: { $set: { inventoryAmount: medication.inventoryAmount || '' } }
-                }
+                    update: {
+                        $set: {
+                            inventoryAmount: medication.inventoryAmount || '',
+                            onHand: medication.inventoryAmount ? medication.inventoryAmount : medication.onHand,
+                        },
+                    },
+                },
             };
 
             bulkUpdateOperations.push(updateOperation);
@@ -73,5 +106,7 @@ module.exports = {
                 res.status(400).json(err);
             });
     },
+
+
 
 }

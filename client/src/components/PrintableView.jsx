@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const PrintableView = () => {
+const PrintableView = ({ user }) => {
     const [formulary, setFormulary] = useState([]);
+    // const [witnessName, setWitnessName] = useState(''); // State to store the witness name
     const currentDate = new Date().toLocaleDateString();
-    // const location = useLocation();
-    // const { inventory } = location.state;
-    // const useHistory = useHistory();
 
     useEffect(() => {
         axios
-            .get('http://localhost:8000/api/formulary', {withCredentials:true})
+            .get('http://localhost:8000/api/formulary', { withCredentials: true })
             .then((res) => {
                 setFormulary(res.data);
             })
@@ -50,21 +48,31 @@ const PrintableView = () => {
             </table>
             <div style={{ marginTop: '20px' }}>
                 <div style={{ display: 'inline-block', marginRight: '50px' }}>
-                    <strong>Conducted By:_______________________</strong>
+                    <strong>Conducted By (signed in user): {user?.firstName} {user?.lastName}</strong>
                     {/* Add a signature block for "conducted by" here */}
                 </div>
-                <div style={{ display: 'inline-block' }}>
-                    <strong>Witnessed By:_______________________</strong>
+                <div style={{ display: 'inline-block', marginRight: '50px' }}>
+                    <strong>Witnessed By: </strong>
                     {/* Add a signature block for "witnessed by" here */}
+                    {/* Add an input field for the witness name */}
+                    <input
+                        type="text"
+                        // value={witnessName}
+                        // onChange={(e) => setWitnessName(e.target.value)}
+                        placeholder="Witness if needed"
+                    />
+                </div>
+                <div style={{ display: 'inline-block' }}>
+                    <strong>Conducted On: {currentDate} </strong>
                 </div>
             </div>
-
         </div>
     );
 };
 
 export default PrintableView;
 
+
 // attempted to bring data from InventoryMeds into PrintableView, but it was not working.  I think it is because the data is not being passed through the route. I tried useHistory.
-// consider react-pdf and window.open method to create a window that opens to save as a pdf, would need npm install @react-pdf/renderer 
+// consider react-pdf and window.open method to create a window that opens to save as a pdf, would need npm install @react-pdf/renderer
 // consider input for name of person conducting inventory and name of person witnessing inventory
