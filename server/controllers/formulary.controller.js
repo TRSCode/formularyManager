@@ -16,7 +16,7 @@ module.exports = {
 
     // READ ONE MED
     getOneMed: (req, res) => {
-        console.log(req)
+        // console.log(req)
         // Formulary.findById(req.params.id) // may need _id:req.params.id with findOne
         Formulary.findOne({ _id: req.params.id })
             .then(oneMed => res.json(oneMed))
@@ -44,35 +44,6 @@ module.exports = {
             .catch((err) => console.log(err))
     },
 
-    // // UPDATE INVENTORY 
-    // // update or updateMany would require to loop through and do an axios call for each one
-    // updateInventory: (req, res) => {
-    //     const { medications } = req.body;
-
-    //     // Create an array to hold the bulk update operations
-    //     const bulkUpdateOperations = [];
-
-    //     // Iterate through the medications array and create the update operation for each document
-    //     medications.forEach((medication) => {
-    //         const updateOperation = {
-    //             updateOne: {
-    //                 filter: { _id: medication._id },
-    //                 update: { $set: { inventoryAmount: medication.inventoryAmount || '' } }
-    //             }
-    //         };
-
-    //         bulkUpdateOperations.push(updateOperation);
-    //     });
-
-    //     // Execute the bulk update operations
-    //     Formulary.bulkWrite(bulkUpdateOperations)
-    //         .then((result) => {
-    //             res.json({ updatedCount: result.modifiedCount });
-    //         })
-    //         .catch((err) => {
-    //             res.status(400).json(err);
-    //         });
-    // },
     // UPDATE INVENTORY 
     updateInventory: (req, res) => {
         const { medications } = req.body;

@@ -28,7 +28,7 @@ const MedUpdate = () => {
     useEffect(() => {
         axios.get(`http://localhost:8000/api/formulary/${id}`, {withCredentials:true})
         .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             setMedication(res.data.medication);
             setDescription(res.data.description);
             setUnitType(res.data.unitType);
