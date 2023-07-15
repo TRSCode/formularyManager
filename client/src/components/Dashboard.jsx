@@ -22,7 +22,7 @@ export default function Dashboard() {
                                 </li>
                                 <li>
                                     <a href= {dosingChart} target="_blank">
-                                        <GiOverdose /> Dosing Chart
+                                        <GiOverdose /> Dosing Chart - Rapid Sequence
                                     </a>
                                 </li>
                             </ul>
