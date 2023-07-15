@@ -10,6 +10,7 @@ import InventoryMeds from './components/InventoryMeds';
 import PrintableView from './components/PrintableView';
 import Login from './components/user/Login';
 import Register from './components/user/Register';
+import Footer from './components/Footer';
 import './styles.css';
 
 const App = () => {
@@ -44,6 +45,7 @@ const App = () => {
                 <Route path="/add" element={<MedForm isLogged={isLogged} />} />
                 <Route path="/formulary/:id" element={<MedUpdate />} />
             </Routes>
+            <Footer />
         </div>
     );
 };
