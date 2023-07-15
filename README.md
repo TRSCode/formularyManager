@@ -17,7 +17,7 @@ This project intends to accomplish the following:
 Product Backlog:
 V.2 features will include:
 * Track medications by percent on hand
-* User registration and login
+* User registration and login (need user levels still)
 * API to openFDA to search medications 
 * Cross reference openFDA API prior to creating new formulary entry to ensure an accurate medication is entered
 * System administrator for user access levels
