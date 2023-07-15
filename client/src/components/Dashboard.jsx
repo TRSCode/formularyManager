@@ -1,17 +1,9 @@
 import { AiOutlineFilePdf } from 'react-icons/ai';
 import { GiOverdose } from 'react-icons/gi';
-// import { Document, Page } from 'react-pdf';
-// import { Image } from 'react-image';
-// import dosingChart from '../assets/img/dosing_chart.png ';
+import dosingChart from './assets/img/dosing_chart.png';
+import approvedFormulary from './assets/documents/FY23_formulary.pdf';
 
 export default function Dashboard() {
-    const handleFormularyClick = () => {
-        window.open('/assets/documents/FY23_formulary.pdf', '_blank');
-    };
-
-    const handleDosingChartClick = () => {
-        window.open('/assets/img/dosing_chart.png', '_blank');
-    };
 
     return (
         <div className="container">
@@ -24,12 +16,12 @@ export default function Dashboard() {
                         <div className="card-body">
                             <ul className="list-unstyled" style={{ paddingLeft: '0', textAlign: 'left' }}>
                                 <li>
-                                    <a href="#" onClick={handleFormularyClick}>
+                                    <a href= {approvedFormulary} target="_blank" >
                                         <AiOutlineFilePdf /> Approved Formulary
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" onClick={handleDosingChartClick}>
+                                    <a href= {dosingChart} target="_blank">
                                         <GiOverdose /> Dosing Chart
                                     </a>
                                 </li>
@@ -71,7 +63,7 @@ export default function Dashboard() {
                                 <li>✅ Highlight med if expired</li>
                                 <li>✅ Create Actions Menu</li>
                                 <li>✅ Sort by name, exp, location</li>
-                                <li>☑️ Conduct Inventory sorted by location that also updates quantity on hand</li>
+                                <li>✅ Conduct Inventory sorted by location that also updates quantity on hand</li>
                                 <li>☑️ Add user with user levels (1-4, systemAdmin, manager with viewOnly, manager with update/delete, user with view and inventory)</li>
                                 <li>☑️ Create pdf upon completion of inventory and save into DB</li>
                             </ul>
@@ -98,8 +90,6 @@ export default function Dashboard() {
                     </div>
                 </div>
             </div>
-            {/* <embed src="/assets/documents/FY23_formulary.pdf" type="application/pdf" width="100%" height="600px" />
-            <img src="/assets/img/dosing_chart.png" alt="Dosing Chart" /> */}
         </div>
     );
 }
