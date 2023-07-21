@@ -142,24 +142,47 @@ const InventoryMeds = (props) => {
     const [inventoryAmounts, setInventoryAmounts] = useState({});
     const navigate = useNavigate();
 
+    // useEffect(() => {
+    //     if (!isLogged) {
+    //         navigate('/login');
+    //         return;
+    //     }
+
+    //     axios
+    //         .get('http://localhost:8000/api/formulary', { withCredentials: true })
+    //         .then((response) => {
+    //             const sortedMedications = response.data.sort((a, b) =>
+    //                 a.medication.localeCompare(b.medication)
+    //             );
+    //             setMedications(sortedMedications);
+    //         })
+    //         .catch((error) => {
+    //             console.error(error);
+    //         });
+    // }, [isLogged, navigate]);
     useEffect(() => {
         if (!isLogged) {
             navigate('/login');
             return;
         }
-
+    
         axios
             .get('http://localhost:8000/api/formulary', { withCredentials: true })
             .then((response) => {
-                const sortedMedications = response.data.sort((a, b) =>
-                    a.medication.localeCompare(b.medication)
-                );
+                const sortedMedications = response.data.sort((a, b) => {
+                    const locationComparison = a.storageLocation.localeCompare(b.storageLocation);
+                    if (locationComparison === 0) {
+                        return a.medication.localeCompare(b.medication);
+                    }
+                    return locationComparison;
+                });
                 setMedications(sortedMedications);
             })
             .catch((error) => {
                 console.error(error);
             });
     }, [isLogged, navigate]);
+    
 
     const handleInventoryChange = (medicationId, e) => {
         const { value } = e.target;
